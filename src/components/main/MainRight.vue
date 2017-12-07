@@ -26,14 +26,14 @@
               <div class="skeletonList">
                 <span class="skeletonName">图片高度：</span>
                 <span >
-                  <Input-number :max="100" :min="0"  :value="currentcomponent[rigthShowUi].style.height" ></Input-number>              
+                  <Input-number :max="100" :min="0"  v-model="currentcomponent[rigthShowUi].style.height" ></Input-number>              
                 </span>
                 <span class="skeletonCue"></span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">上边间距：</span>
                 <span >
-                  <Input-number :max="100" :min="0"  :value="currentcomponent[rigthShowUi].style.padding" ></Input-number>              
+                  <Input-number :max="100" :min="0"  v-model="currentcomponent[rigthShowUi].style.padding" ></Input-number>              
                 </span>
                 <span class="skeletonCue">(1~100)</span>
               </div>
@@ -43,7 +43,7 @@
                   <color-picker v-model="currentcomponent[rigthShowUi].style.backgroundColor" :colors="colors" />
                 </span>
                 <span >
-                  <i-input class="resetInput "  :value="currentcomponent[rigthShowUi].style.backgroundColor" > </i-input>
+                  <i-input class="resetInput "  v-model="currentcomponent[rigthShowUi].style.backgroundColor" > </i-input>
                 </span>
               </div>
               <div class="skeletonList">
@@ -90,23 +90,23 @@
               <div class="skeletonList">
                 <span class="skeletonName">文字大小：</span>
                 <span >
-                  <Input-number :max="100" :min="0"  :value="currentcomponent[rigthShowUi].style.fontSize" ></Input-number>              
+                  <Input-number :max="100" :min="0"  v-model="currentcomponent[rigthShowUi].style.fontSize" ></Input-number>              
                 </span>
                 <span class="skeletonCue">px (1~100)</span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">文字颜色：</span>
                 <span >
-                  <color-picker :value="currentcomponent[rigthShowUi].style.color" :colors="colors" />
+                  <color-picker v-model="currentcomponent[rigthShowUi].style.color" :colors="colors" />
                 </span>
                 <span >
-                  <i-input class="resetInput "  :value="currentcomponent[rigthShowUi].style.color" > </i-input>
+                  <i-input class="resetInput "  v-model="currentcomponent[rigthShowUi].style.color" > </i-input>
                 </span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">文字内容：</span>
                 <span >
-                  <i-input style="width:144px" :value="currentcomponent[rigthShowUi].text" ></i-input>              
+                  <i-input style="width:144px" v-model="currentcomponent[rigthShowUi].text" ></i-input>              
                 </span>
                 
               </div>
