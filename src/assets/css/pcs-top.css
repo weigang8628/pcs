@@ -1,0 +1,98 @@
+.header {
+    width: 100%;
+    margin: 0 auto;
+    height: 55px;
+    line-height: 55px;
+    background-color: #fff;
+    color: #000;
+    z-index: 999;
+    box-shadow: 0 0 5px 0 #a5a5a5;
+    margin-bottom: 5px;
+}
+
+.cut_tab {
+    width: 300px;
+    height: 55px;
+    float: left;
+    position: relative;
+}
+
+.cut_tab li {
+    width: 150px;
+    height: 55px;
+    float: left;
+    line-height: 55px;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.active {
+    color: #EFBF1F;
+    border-bottom: 2px solid #efbf1f;
+    height: 55px;
+}
+
+.active:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent;
+    bottom: -1px;
+    left: 73px;
+    border-bottom-color: #EFBF1F;
+    }
+
+.middle-part {
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+    float: left;
+    text-align: center;
+}
+
+.middle-part ul li {
+    float: left;
+    width: 25%;
+}
+
+.middle-part ul li a {
+    color: #404040;
+    transition: color 1s;
+}
+
+.middle-part ul li a:hover{
+	color:#EFBF1F;
+}
+
+.cont-right {
+    width: 30%;
+    float: right;
+    height: 55px;
+}
+
+.cont-right li {
+    float: left;
+    width: 80px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    margin-top: 13px;
+    margin-right: 17px;
+    border-radius: 5px;
+    color: #EFBF1F;
+    border: 1px solid #EFBF1F;
+    cursor: pointer;
+}
+
+.generate {
+    background-color: #EFBF1F;
+    color: #fff !important;
+}
+
+
+
+

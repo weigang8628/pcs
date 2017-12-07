@@ -1,0 +1,125 @@
+{
+  "appname": "我的第一个模板01",
+  "tplid": "01",
+  "navigationBarBackgroundColor": "rgba(0,0,0,0)",
+  "tplimg": "http://www.weixapps.com:3200/res/form/2c91a36a5fdd8c9a015ffb7cb6661552/297eb6155f35043d015f3505adfd0004/7163320171127163129989.jpg",
+  "htmls": [
+    {
+      "navigationBarTitleText": "首页",
+      "style": {
+        "backgroundColor": "#f00"
+      },
+      "uis": [
+        {
+          "imgs": {
+            "id": "01",
+            "title": "图片",
+            "url": "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+            "style": {
+              "width": "80px",
+              "height": "80px",
+              "padding": "20px",
+              "marginTop": "10px",
+              "backgroundColor": "#f00"
+            }
+          }
+        },
+        {
+          "Texts": {
+            "id": "02",
+            "title": "文本",
+            "text": "我是一个文本组件",
+            "style": {
+              "fontSize": "24px",
+              "color": "#f00",
+              "backgroundColor": "yellow"
+            }
+          }
+        },
+        {
+          "imgs": {
+            "id": "03",
+            "title": "图片",
+            "url": "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+            "style": {
+              "width": "100px",
+              "height": "150px",
+              "padding": "20px",
+              "marginTop": "10px"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "navigationBarTitleText": "列表页",
+      "style": {
+        "fontSize": "24px",
+        "color": "#f00",
+        "backgroundColor": "green"
+      },
+      "uis": [
+        {
+          "Texts": {
+            "id": "02",
+            "title": "文本",
+            "text": "我是一个文本组件",
+            "style": {
+              "fontSize": "24px",
+              "color": "#f00",
+              "backgroundColor": "#ccc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "navigationBarTitleText": "内容页",
+      "backgrond-co": "green",
+      "uis": [
+        {
+          "Texts": {
+            "id": "02",
+            "title": "文本",
+            "text": "我是一个文本组件内容页的",
+            "style": {
+              "fontSize": "24px",
+              "color": "#f00",
+              "backgroundColor": "#ccc"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "foot": {
+    "isHide":false,
+    "toolbars": [
+      {
+        "title": "首页",
+        "url": "",
+        "style": {
+          "fontSize": "24px",
+          "color": "#f00",
+          "defimg": "",
+          "selimg": ""
+        }
+      },
+      {
+        "title": "购物车",
+        "url": "",
+        "style": {
+          "fontSize": "24px",
+          "color": "#f00",
+          "defimg":"",
+          "selimg":""
+        }
+      }
+    ],
+    "toolbarStyle": {
+      "fontSize": "24px",
+      "color": "#f00",
+      "backgroundColor": "#ccc"
+    }
+  }
+}

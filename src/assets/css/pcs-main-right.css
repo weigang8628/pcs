@@ -1,0 +1,296 @@
+.rg-amend {
+  width: 333px;
+  right: -333px;
+  margin-left: -333px;
+  position: relative;
+   float: left;
+	color: #666666;
+	font-size: 14px;
+	height:100%;
+	background-color: #F6F6F6;
+	box-sizing: border-box;
+	overflow-x: auto;
+	padding-left: 20px;
+  overflow-y: scroll; 
+  background-color: #F6F6F6;
+  box-shadow: 1px -5px 8px #c6c6c6;
+  
+}
+
+#skeletonBody{
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 340px;
+    color: #666666;
+    font-size: 16px;
+    height: 600px;
+    background-color: #F6F6F6;
+
+}
+#skeletonBody_con{
+    position: absolute;
+    width: 320px;
+    height: 100%;
+    overflow: hidden;
+}
+#skeletonBox{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 340px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+.resetInput{
+    border:none;
+    background: white;
+    width: 80px;
+}
+.skeletonList{
+    min-height: 40px;
+    line-height: 40px;
+}
+
+.skeletonName{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 6px 0;
+}
+.valueInput{
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #dedede;
+    height: 24px;
+}
+.miniInput{
+    width: 40px;
+}
+.alignInput{
+    width: 20px;
+    padding: 0 6px;
+    font-size: 14px;
+}
+
+.mL50{
+    margin-left: 50px;
+}
+.mL5{
+    margin-left: 10px;
+
+}
+.marginL20{
+    margin-left: 20px;
+}
+.mR5{
+    margin-right: 5px;
+}
+.mR10{
+     margin-right: 10px;
+ }
+.skeletonCue{
+    font-size: 14px;
+    font-weight: normal;
+    color: darkorange;
+    margin-left: 5px;
+}
+.fileInput{
+    width: 200px;
+    border: none;
+}
+#skeletonBox input{
+    outline: none;
+    cursor: pointer;
+}
+.skeletonList select{
+    border: solid 1px #dedede;
+    border-radius: 6px;
+    height: 24px;
+    min-width: 40px;
+    text-align: center;
+    outline: none;
+    box-sizing: border-box;
+    padding-left: 10px;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background: url("../img/arrow.png") no-repeat scroll right center white;
+    padding-right: 14px;
+}
+.skeletonFontWeight{
+    font-weight: bold;
+    cursor: pointer;
+}
+.skeletonFontItalic{
+    font-style: italic;
+    font-family: 'Times New Roman';
+    cursor: pointer;
+}
+.skeletonFontUnderline{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.skeletonList .linkTopage{
+    width: 120px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #dedede;
+    height: 24px;
+    cursor: pointer;
+    background: white;
+}
+.linkTopageContent{
+    display: inline-block;
+    height: 24px;
+    margin-left:0px;
+    color: #FE923D;
+    border: 0 none;
+    outline-style: none;
+    background-color: #F6F6F6;
+}
+
+
+.fontClassInline_Block{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding:6px;
+    margin:0 2px;
+}
+.fontClassInline_Block2{
+    width:30px;
+    height:20px;
+    padding:6px;
+    text-align:center;
+    line-height:20px;
+    display: inline-block;
+    cursor:pointer;
+}
+.fontClassInline_Block3{
+    display: inline-block;
+    width:60px;
+    height:20px;
+    padding:6px;
+    text-align:center;
+    line-height:20px;
+    cursor:pointer;
+}
+.selectFontClassBGCAndColor{
+    background:#2CB9FE;
+    color:#ffffff;
+    border-radius:6px;
+}
+
+.pxInput{
+    position: relative;
+}
+.pxInput::before{
+    display: block;
+    position: absolute;
+    content: "px";
+    right: 10px;
+    top: -12px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+}
+.bfbInput{
+    position: relative;
+}
+
+.bfbInput::before{
+    display: block;
+    position: absolute;
+    content: "%";
+    right: 10px;
+    top: -10px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+
+}
+.captionInput{
+    position: relative;
+}
+.captionInput::before{
+    display: block;
+    position: absolute;
+    content: "px";
+    right: 10px;
+    top: 0px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+}
+.resetTextarea{
+    outline: none;
+    font-size: 14px;
+    border-radius: 6px;
+    background: white;
+    resize: none;
+    line-height: 1.6em;
+    color: #1E1E1E;
+}
+#skeletonNavFontWeight,#skeletonNavFontItalic,#skeletonNavFontUnderLine,#skeletonNavFontChangeColor,#skeletonNavFontLeft,#skeletonNavFontCenter,#skeletonNavFontRight{
+    cursor: pointer;
+}
+.bgcBlue{
+    background: #2CB9FE;
+    color: white;
+}
+.checkBoxInput{
+    width:18px;
+    height: 18px;
+    vertical-align: middle;
+}
+.display-block{
+	display: block;
+}
+.display_inline_block{
+    display: inline-block;
+    vertical-align: middle;
+}
+.colorInput{
+    width: 70px;
+    font-size: 14px;
+}
+/*#skeletonBox img{*/
+    /*vertical-align: middle;*/
+/*}*/
+.textareaSpan{
+    vertical-align: top;
+}
+.colorShowBox{
+    width: 20px;
+    height: 20px;
+    background: white;
+}
+
+.homeFooter_font {
+	width: 30px;
+}
+
+#skeletonBtnValue{
+    border:1px solid #dedede;
+    border-radius: 6px;
+    padding:4px 10px;
+}
+
+.spanBorder1{
+    border: 1px solid #dedede;
+    font-size:10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.search_position.checkes{
+    background-color: #64E0FD;
+    color: white;
+}
+

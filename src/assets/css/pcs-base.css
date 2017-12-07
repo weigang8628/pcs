@@ -1,0 +1,59 @@
+ html,body{
+	 height: 100%;
+ }
+ body,
+ div,
+ p,
+ ul,
+ li,
+ a {
+ 	margin: 0;
+ 	padding: 0;
+ }
+ 
+ ul li {
+ 	list-style: none;
+ }
+ 
+ a {
+ 	text-decoration: none;
+ }
+ 
+ body {
+ 	color: #666;
+ 	min-width: 1080px;
+ 	overflow-x: hidden;
+ 	overflow-y: hidden;
+	 background-color: #dcdcdc;
+	 box-sizing: border-box;
+	 font-size: '微软雅黑';
+	 font-size: 16px;
+ }
+ 
+.wentengfanyi {
+	width: 320px;
+	height: 530px;
+	overflow-x: hidden !important;
+    overflow-y: scroll !important;
+}
+
+/* mainbox */
+.box_middule{
+  margin-top: -4px;
+  padding: 0 333px 0px 300px;
+  overflow: hidden;
+  height: 100%;
+}
+/* mainbox-center-phonebox */
+.phone_setBox {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+.protype_box1 {
+    display:none;
+}
+
+.box-block{
+	display: block;
+}
