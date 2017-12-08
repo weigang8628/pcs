@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>04_v-bind给属性赋值</title>
+  <style type="text/css">
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: yellowgreen;
+    }
+
+    .hotpink {
+      background-color: hotpink;
+    }
+
+    .big {
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 留坑 -->
+  <div id="app"></div>
+
+  <script type="text/javascript" src="./vue.js"></script>
+  <script type="text/javascript">
+    var myTemplate = `
+            <div>
+            <button v-for=" (item,index) in arr" @click="aa(index)">点击第{{index}}按钮</button>
+              <div v-for=" (item,index) in newarr">
+              索引{{index}}
+              ++++{{item}}++++
+              </div>
+              <hr/>
+            
+              <button @click="aa(0)">点击第0按钮</button>
+              <button @click="aa(1)">点击第1按钮</button>
+
+
+            </div>
+            
+
+        `;
+    new Vue({
+      el: '#app',
+      template: myTemplate,
+      data() {
+        return {
+          arr: [{ name: "数组中的第零项" }, { name: '数组中的第一项' }, { name: '数组中的第二项' }],
+          newarr:[],
+        };
+      },
+      methods:{
+        aa(index){
+           
+          //console.log(this.arr[index].id=sj)
+          //console.log(this.newarr.push(this.arr[index]));
+          // this.newarr.push(this.arr[index].id = sj)
+          
+          // var ui = this.arr[index];
+          // ui.id = Math.random() * 100;
+          // this.newarr.push(this.arr[index]);
+
+for (let i = 0; i < this.arr.length; i++) {
+  var sj = Math.random() * 100;
+  this.arr[i].id= sj;
+}
+console.log(this.arr[index]);
+  
+
+        }
+      }
+
+    })
+
+  </script>
+  
+</body>
+
+</html>

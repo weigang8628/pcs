@@ -2,9 +2,9 @@
   <div id="app">
     <router-view/>
     <!-- 头部 -->
-    <SelectTpl v-show="xs" :xs="xs" @isxs="isxs"></SelectTpl>
+    <SelectTpl v-show="xs" :xs="xs" @isxs="isxs" @muban="muban" :newuis="newuis"></SelectTpl>
     <Top @isshowxxkFn="isshowxxkFn" @isxs="isxs"></Top><!--  -->
-    <Home :isshowxxk="isshowxxk"></Home>
+    <Home :isshowxxk="isshowxxk" :tpljson="tpljson" @newuisFn="newuisFn"></Home>
   </div>
 </template>
 
@@ -18,6 +18,9 @@ export default {
     return {
       xs:'',
       isshowxxk:'',
+      tpljson:{},
+     
+      newuis:[],
     }
   },
   methods:{
@@ -26,15 +29,25 @@ export default {
     },
     isxs(data){
       this.xs=data
+    },
+    muban(data){
+     // console.log(data)
+      this.tpljson=data
+    },
+    newuisFn(data){
+      console.log(data);
+      this.newuis = data;
     }
   },
   components: {
     Top,
     Home,
     SelectTpl,
-  },
+  }
+  
 }
 </script>
 
 <style scoped>
+
 </style>

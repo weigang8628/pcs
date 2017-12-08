@@ -1,119 +1,155 @@
 <template>
   <div>
-    <!-- 模板中心 -->
-    <div class="tcs-mb">
-      <Row>
-        <i-col span="4">
+    <!-- 模板 -->
+    <transition name="fade">
+        <div class="tcs-mb">
           <div class="mbfl-t">
-        <ul>
-          <h3>请选择套餐</h3>
-          <i-button type="ghost">A套餐</i-button>
-          <i-button type="ghost">B套餐</i-button>
-        </ul>
-        <ul>
-          <h3>请选择行业</h3>
-          <i-button type="ghost">婚纱摄影</i-button>
-          <i-button type="ghost">餐饮</i-button>
-          <i-button type="ghost">医疗</i-button>
-          <i-button type="ghost">维修</i-button>
-          <i-button type="ghost">上门服务</i-button>
-          <i-button type="ghost">金融</i-button>
-        </ul>
-      </div>
-        </i-col>
-        <i-col span="20">
+            <ul>
+              <h3>请选择套餐</h3>
+              <li><a href="javascript:;">A套餐</a><i>1999.00</i></li>
+              <li><a href="javascript:;">B套餐</a><i>18900.00</i></li>
+            </ul>
+            <ul>
+              <h3>请选择行业</h3>
+              <li><a href="javascript:;">婚纱摄影</a></li>
+              <li><a href="javascript:;">餐饮</a></li>
+              <li><a href="javascript:;">医疗</a></li>
+              <li><a href="javascript:;">维修</a></li>
+              <li><a href="javascript:;">上门服务</a></li>
+              <li><a href="javascript:;">金融</a></li>
+            </ul>
+            
+          </div>  `
           <div class="mbfl-l">
-        <ul> 
-          <li v-for="(item,index) in alltpl " :key="index">
-            <router-link to="{path:'/news', query:{page: index }}">
-              <h3>{{item.appname}}</h3>
-              <img :src="item.tplimg" alt="">
-              <span>立即使用</span>
-            </router-link>
-          </li>
-        </ul>
-      </div>
-        </i-col>
-    </Row>
-    
-    <Row>
-      <i-col>
-        <div @click="srue">取消</div>
-        <div @click="srue">确定</div>
-      </i-col>
-    </Row>
-    
-    
-      
-    </div>
+            <ul>
+              <li v-for="(item,index) in alltpl" :key="index" @click="send(index)">
+                  {{index+2}}
+                  <h3>{{item.appname}}</h3>
+                  <img :src="item.tplimg" alt="">
+                  <span @click="srue">立即使用</span>
+              </li>
+              <!-- <li @click="send">
+                  <h3>蛋糕店</h3>
+                  <img src="http://www.weixapps.com:3200/res/form/2c91a36a5fdd8c9a015ffb7cb6661552/297eb6155f35043d015f3505adfd0004/4912820171127173017719.jpg" alt="">
+                  <span>立即使用</span>
+              </li> -->
+
+
+            </ul>
+          </div>
+          <div @click="srue">确定</div>
+        </div>
+    </transition>
+
   </div>
   <!-- 头部结束 -->
-  </div>
+
 </template>
 
 <script>
 export default {
+  props: ["newuis"],
   data() {
     return {
+      off: false,
       alltpl: [
         {
-          appname: "我是第一个模板",
+          appname: "蛋糕店",
           tplid: "01",
-          tplimg: "http://www.weixapps.com/applet/img/muban7.jpg"
+          tplimg:
+            "http://www.weixapps.com:3200/res/form/2c91a36a5fdd8c9a015ffb7cb6661552/297eb6155f35043d015f3505adfd0004/4912820171127173017719.jpg"
         },
         {
-          appname: "我是第二个模板",
+          appname: "家居Lite",
           tplid: "02",
-          tplimg: "http://www.weixapps.com/applet/img/muban7.jpg"
+          tplimg:
+            "http://www.weixapps.com:3200/res/form/2c91a36a5fdd8c9a015ffb7cb6661552/297eb6155f35043d015f3505adfd0004/7163320171127163129989.jpg"
         },
         {
           appname: "我是第一个模板",
           tplid: "03",
-          tplimg: "http://www.weixapps.com/applet/img/muban7.jpg"
+          tplimg: "http://www.weixapps.com/applet/img/muban14.jpg"
         }
-      ]
+      ],
+      json: {}
+    };
+  },
+  methods: {
+    srue() {
+      this.$emit("isxs", this.off);
+    },
+    send(index) {
+      if (this.newuis.length != 0) {
+        var fgalert = confirm("有没保存的模板数据，确定要清空么？");
+        if (fgalert == true) {
+          this.newuis.splice(0, this.newuis.length);
+          this.$ajax
+            .get("../../tpl/tpl" + [index + 2] + ".json")
+            .then(res => {
+              this.json = res.data;
+              this.$emit("muban", this.json);
+              //var fgalert= confirm("有没保存的数据，确定要清空么？");
+            })
+            .catch(err => console.log(err));
+        }
+      } else {
+        this.$ajax
+          .get("../../tpl/tpl" + [index + 2] + ".json")
+          .then(res => {
+            this.json = res.data;
+            this.$emit("muban", this.json);
+            //var fgalert= confirm("有没保存的数据，确定要清空么？");
+          })
+          .catch(err => console.log(err));
+      }
     }
   },
-  methods:{
-    srue(){
-      this.$emit('isxs',this.off)
-    },
-    send(){
-      this.$ajax.get("../../tpl/tpl02.json").then(res => {
-        console.log(res.data)
-          this.json=res.data
-          this.$emit("muban",this.json)
-          console.log(this.json)
-    
-      }).catch(err => console.log(err));
-
-    }
-  }
+  updated() {}
 };
 </script>
 
 <style scoped lang='less'>
-.ivu-btn-ghost {
-  background-color: #fff;
-  	width: 80px;
+.fade-enter-active,
+.fade-leave-active {
+  transition: 1s all ease;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  width: 100%;
+  height: 300px;
+}
+.fade-leave-active {
+  opacity: 0;
+  width: 100%;
+  height: 0px;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
+  width: 100%;
+  height: 0px;
 }
 .tcs-mb {
   overflow: hidden;
-  background-color: #f4f4f4;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-
+  background-image: url('../../assets/img/tplbg.jpg');
   .mbfl-t {
+    float: left;
   }
   .mbfl-l {
+    float: left;
+    width: 80%;
     ul {
       li {
         float: left;
+        height: 178px;
         h3 {
           font-size: 16px;
         }
         img {
           width: 100px;
+          height: 100%;
         }
       }
     }

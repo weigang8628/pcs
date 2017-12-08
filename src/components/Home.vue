@@ -4,7 +4,7 @@
     <!-- 左边 -->
     <div class="box_middule">
       <div class="phone_setBox">
-        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn" @removecomponetFn="removecomponetFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[0].uis" :centerShow="centerShow" :imgw="imgw"></CenterBox>
+        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[0].uis" :centerShow="centerShow" :imgw="imgw"  :zjitems="zjitems" :tpljson="tpljson"></CenterBox>
       </div>
       <LeftBox @LsData = "lsdatafn" :isshowxxk="isshowxxk"></LeftBox>
       <RightBox @isLogFn = "lisLogFn" @imgwFn="imgwFn" :isLog = "mbjson" :currentcomponent="currentcomponent" :rigthShow="rigthShow" :rigthShowUi="rigthShowUi" :centerindex="centerindex"></RightBox>
@@ -16,14 +16,14 @@
 import LeftBox from "./main/MainLeft";
 import CenterBox from "./main/MainCenter.vue";
 import RightBox from "./main/MainRight.vue";
-
 export default {
-	props:['isshowxxk'],
+	props:['isshowxxk','tpljson'],
   data() {
     return {
       rigthShow:false,
       rigthShowUi:"",
       lsdata: [],
+      zjitems:[],
       mbjson: {
         width: "80%",
         height: "100px",
@@ -87,6 +87,7 @@ export default {
     lsdatafn(data) {
       this.tplTemp.htmls[0].uis.push(data); //系统组件
       console.log(this.tplTemp.htmls[0].uis);
+      
       this.centerShow = Object.keys(data)[0];
       
     },
@@ -94,16 +95,12 @@ export default {
       this.currentcomponent = data;
       this.rigthShow = true;
       this.rigthShowUi = Object.keys(data)[0];
-      console.log("下面是app中打印的接收到的数据");
-      console.log(this.currentcomponent);
+    //  console.log("下面是app中打印的接收到的数据");
+    //  console.log(this.currentcomponent);
     },
     centerindexFn(data){
       this.centerindex = data
       //console.log(this.centerindex+"111111")
-    },
-    removecomponetFn(data){
-        console.log("索引"+data+"要被删除");
-       // this.tplTemp.htmls[0].uis
     },
     imgwFn(data){
         this.imgw = data
@@ -118,16 +115,19 @@ export default {
       .get("")
       .then(res => {
         this.appname = res.data.appname;
-        console.log(this.appname);
         //图片宽度
         this.imgwidth = res.data.htmls["0"].uis["0"].imgs.style.width;
         this.imgwidth = this.imgwidth.substring(0, this.imgwidth.length - 2);
         //图片高度
         this.imgheight = res.data.htmls["0"].uis["0"].imgs.style.height;
         this.imgheight = this.imgheight.substring(0, this.imgheight.length - 2);
-        console.log(res.data);
+       // console.log(res.data);
       })
       .catch(err => console.log(err));
+  },
+  updated(){
+    var newuis = this.tplTemp.htmls[0].uis
+    this.$emit("newuisFn", newuis);
   }
 };
 </script>

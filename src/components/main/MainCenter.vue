@@ -32,28 +32,22 @@
             <div class="screen tuozhuailianjie ui-sortable" id="right">
               <div class="first_1" style="display: block;" data-xcxmc="" data-color="#000000" draggable="false">
                 <!-- {{allcomponents[0].imgs}} -->
-               <div  :class="index==currentactive ? 'phone-mkbox phoneactive':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" @click="showXx($event,index)" style="background-color: #f5e9bc; margin-top:20px;">
-                  索引：{{index}}
+               <div  :class="index==currentactive ? 'phone-mkbox phoneactive':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" style="background-color: #f5e9bc; margin-top:20px; position: relative;">
+                  <div  @click="showXx($event,index)">
+                    索引：{{index}}
                   <br/>
                   {{imgw}}
-                   {{item}}  
-                   <div @click="removecomponent(index)" style="position:absolute;">
+                   {{item}} 
+                    </div> 
+                   <div @click="removecomponent(item,index)" style="position:absolute; right:0px; top:0px;z-index:100">
                      点击删除
                    </div>
-                   
-
-
                </div>
-               
-        
-
-
-               
-                  
-                  
-<!-- 
-                   -->
-                  
+               <!-- json模板 -->
+              <div v-html="tpljson.html">
+                <div>{{tpljson.html}}</div>
+              </div>
+              
                 <!-- <div v-for="(item,index) in isLog " :key="item.index">{{item}}</div> -->
                 <!-- {{isLog}} -->
                 <!-- <Imgs :isLog = "isLog"></Imgs> -->
@@ -69,47 +63,46 @@
 </template>
 
 <script>
-
-import Imgs from '@/components/modular/Imgs.vue'
+import Imgs from "@/components/modular/Imgs.vue";
 export default {
-  props: ['isLog','allcomponents','centerShow','imgw'],
+  props: ["isLog", "allcomponents", "centerShow", "imgw",'zjitems','tpljson'],
   data() {
     return {
-      lsdatasbak:[],
-      currentcomponent:[],
+      lsdatasbak: [],
+      currentcomponent: [],
       isShowAttribute: false,
-      currentclose:'',
-      currentactive:'false',//默认不出现选中效果
-      
-      
-    }
+      currentclose: "",
+      currentactive: "false" //默认不出现选中效果
+    };
   },
-  created(){
- 
+  created() {
+    this.tpldata=this.tpljson
   },
-  updated(){
-  },
-  components:{
-    Imgs,
+  updated() {},
+  components: {
+    Imgs
   },
   methods: {
     RightAttribute() {
       this.isShowAttribute = true;
     },
-    showXx(e,index){
-      
-      this.currentcomponent = this.allcomponents[index];//当前的组件的数据，点击左侧的时候触发
-      console.log("下面是center中打印的数据");
-      console.log(this.currentcomponent);
-      this.$emit('currentcomponentFn',this.currentcomponent)//传递数据到-app-right
-      this.$emit('centerindexFn',index)
-      this.currentactive = index;//判断选中
-      this.currentclose=true;
+    //点击前数据到传到右侧
+    showXx(e, index) {
+      this.currentcomponent = this.allcomponents[index]; //当前的组件的数据，点击左侧的时候触发
+      this.$emit("currentcomponentFn", this.currentcomponent); //传递数据到-app-right
+      this.$emit("centerindexFn", index);
+      this.currentactive = index; //判断选中
+      this.currentclose = true;
     },
-    removecomponent(index){
-      this.$emit("removecomponetFn", index);
+    //删除某个组件块
+    removecomponent(index) {
+      this.allcomponents.splice(index, 1);
+      if (this.allcomponents.length == 0) {
+        this.currentclose = false;
+        alert("没有数据");
+      }
     }
-  } 
+  }
 };
 </script>
 
@@ -120,15 +113,13 @@ export default {
   position: relative;
 }
 
-.phone-mkbox{
+.phone-mkbox {
   margin-left: 2px;
   margin-right: 2px;
 }
-.phoneactive{
+.phoneactive {
   border: 0px dashed red;
-  box-shadow:  0px 0px 2px red;
-  
-
+  box-shadow: 0px 0px 2px red;
 }
 .muddle-phone {
   width: 420px;
@@ -141,7 +132,6 @@ export default {
   background-color: #f4f4f4;
   border-radius: 32px;
   padding-bottom: 30px;
-  
 }
 .telephone-receiver {
   display: inline-block;
@@ -231,7 +221,7 @@ export default {
   width: 100%;
   font-size: 14px;
 }
-.side_bar_bottom_padding{
+.side_bar_bottom_padding {
   padding-left: 10px;
 }
 .side_bar_bottom > div {
@@ -256,6 +246,4 @@ export default {
     width: 60%;
   }
 }
-
-
 </style>
