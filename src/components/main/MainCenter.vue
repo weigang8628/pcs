@@ -33,20 +33,10 @@
           <div class="screen_box" >
             <div class="screen tuozhuailianjie ui-sortable" id="right" :style="{backgroundColor:pagebgcolor.backgroundColor}">
              
-     
-             
  {{pagevalue}}
-         
-             
-             
              
               <div class="first_1" style="display: block;" data-xcxmc="" data-color="#000000" draggable="false">
                 <!-- {{allcomponents[0].imgs}} -->
-               
-              
-               
-               
-               
                
                
                <div  :class="index==currentactive ? 'phone-mkbox phoneactive showclose':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" style="background-color: #f5e9bc;   position: relative;">
@@ -55,16 +45,20 @@
                     <br/>
                     {{imgw}}
                     {{item}}  -->
-
+                    <!-- {{Object.keys(item)[0]}} -->
 
                     <!-- 单张图片 -->
-                    <div class="componentimgs">
+                    <div class="componenttexts" v-if="Object.keys(item)[0]=='imgs'">
                       <div :style="{marginTop:item.imgs.style.marginTop+'px', backgroundColor:item.imgs.style.backgroundColor,textAlign:item.imgs.style.textAlign}">
                         <img :style="{width:item.imgs.style.width+'%', height:item.imgs.style.height+'px'}" :src="item.imgs.url" alt="">
                       </div>
                     </div>
+
+                    <!-- 文本组件 -->
+                    <div class="componenttexts" v-if="Object.keys(item)[0]=='texts'">
+                      <div> {{item.texts.text}} </div>
+                    </div>
                     
-                   
                     </div> 
                    <div class="del" @click="removecomponent(item,index)" style="position:absolute; right:0px; top:-24px; background-color:#f00; width:28px; color:#fff; text-align:center; z-index:100">
                      X
