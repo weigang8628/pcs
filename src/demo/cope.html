@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>引用类型复制 - 深拷贝</title>
+  <!-- 
+    深拷贝：就是用来解决对象复制而互不影响的问题的
+    深拷贝的本质就是复制了每一个成员的值
+   -->
+</head>
+
+<body>
+  <script>
+    var obj = {
+      foo: 'bar',
+      name: 'Jack',
+      age: 18,
+      sub: {
+        foo: 'bar',
+        arr: [1, 2, { foo: 'bar' }]
+      }
+    }
+
+    var obj1 = {}
+    
+
+    extend(obj1, obj)
+
+
+    obj1.foo = 'qqqqq'
+    console.log( obj1.foo, obj.foo)
+
+    console.log(obj, obj1)
+
+    /**
+     * 对象深拷贝
+     * @param  {Object} target 目标对象
+     * @param  {Object} source 源对象
+     * @return {Undefined}        undefined
+     */
+    function extend(target, source) {
+      for (var key in source) {
+        // 1. 如果是对象，则创建对象 target[key] = {}，然后遍历拷贝 source[key] 对象，拷贝到 target[key]
+        // 2. 如果是数组，则创建数组：target[key] = [] ，然后遍历拷贝 source[key] 数组，拷贝到 target[key] 数组中
+        // 3. 既不是对象也不是数组，直接拷贝 target[key] = source[key]
+        if (Object.prototype.toString.call(source[key]) === '[object Object]') {
+          // target.sub = {}
+          // extend(target.sub, source.sub)
+          // target = target.sub
+          // source = source.sub
+          // target[key] = source[key]
+          target[key] = {}
+          // 遍历 source[key] 拷贝到刚刚创建的 target[key] 对象中
+          // 这里递归调用
+          // 把刚刚创建的 target[key] 作为目标源
+          // 把 source[key] 作为数据源
+          // 把 source[key] 中的数据拷贝到 target[key] 中
+          extend(target[key], source[key])
+        } else if (Object.prototype.toString.call(source[key]) === '[object Array]') {
+          target[key] = []
+          // 遍历 source[key] 拷贝到刚刚创建的 target[key] 数组中
+          extend(target[key], source[key])
+        } else {
+          target[key] = source[key]
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

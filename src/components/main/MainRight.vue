@@ -3,6 +3,52 @@
     <!--主体右侧部分-->
     <div class="rg-amend" :style="right_bg_h"  >
       <div class="demo" >
+
+
+        <!-- 全局设置 -->
+            <!-- 全局设置-索引0 -->
+            <div v-if="pageindex==0">
+              {{pagevalue}}的全局配置
+              <div class="skeletonList">
+                  <span class="skeletonName">背景颜色：</span>
+                  <span >
+                    <color-picker v-model="pagebgcolor.backgroundColor"  />
+                  </span>
+                  <span >
+                    <i-input class="resetInput" v-model="pagebgcolor.backgroundColor"> </i-input>
+                  </span>
+                </div>
+            </div>
+            <!-- 全局设置-索引1 -->
+            <div v-if="pageindex==1">
+              {{pagevalue}}的全局配置
+              <div class="skeletonList">
+                  <span class="skeletonName">背景颜色：</span>
+                  <span >
+                    <color-picker v-model="pagebgcolor.backgroundColor" />
+                  </span>
+                  <span >
+                    <i-input class="resetInput" v-model="pagebgcolor.backgroundColor"> </i-input>
+                  </span>
+                </div>
+            </div>
+            <!-- 全局设置-索引2 -->
+            <div v-if="pageindex==2">
+              {{pagevalue}}的全局配置
+              <div class="skeletonList">
+                  <span class="skeletonName">背景颜色：</span>
+                  <span >
+                    <color-picker v-model="pagebgcolor.backgroundColor" />
+                  </span>
+                  <span >
+                    <i-input class="resetInput" v-model="pagebgcolor.backgroundColor"> </i-input>
+                  </span>
+                </div>
+            </div>
+            
+            
+
+
         <hr/>
        <!-- index: {{centerindex}} key:{{rigthShowUi}}
        {{currentcomponent}} -->
@@ -10,32 +56,30 @@
            
             {{Object.keys(rigthShow)[0]}}
 
-            <!-- Imgs组件 -->
+            <!-- 单张图片组件 -->
             <div v-if="rigthShowUi=='imgs'">
               <!-- {{currentcomponent[rigthShowUi]}} -->
 
               <div class="skeletonList">
                 <span class="skeletonName">图片宽度：</span>
                 <span >
-                              
-
-                  <Input-number :max="100" :min="0" @input="ss" :value="currentcomponent[rigthShowUi].style.width" ></Input-number>              
+                  <Input-number :max="100" :min="0" @input="ss" v-model="currentcomponent[rigthShowUi].style.width" ></Input-number>              
                 </span>
-                <span class="skeletonCue">(单位：% 1~100)</span>
+                <span class="skeletonCue">(单位：% )</span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">图片高度：</span>
                 <span >
-                  <Input-number :max="100" :min="0"  v-model="currentcomponent[rigthShowUi].style.height" ></Input-number>              
+                  <Input-number :min="0"  v-model="currentcomponent[rigthShowUi].style.height" ></Input-number>              
                 </span>
-                <span class="skeletonCue"></span>
+                <span class="skeletonCue">(单位：px )</span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">上边间距：</span>
                 <span >
-                  <Input-number :max="100" :min="0"  v-model="currentcomponent[rigthShowUi].style.padding" ></Input-number>              
+                  <Input-number :min="0"  v-model="currentcomponent[rigthShowUi].style.marginTop" ></Input-number>              
                 </span>
-                <span class="skeletonCue">(1~100)</span>
+                <span class="skeletonCue">(单位：px )</span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">背景颜色：</span>
@@ -63,11 +107,12 @@
                 </div>
                 <div class="skeletonList">
                   <span class="skeletonName">图片对齐：</span>
-                  <radio-group v-model="button_img" type="button">
-                      <radio label="靠左"></radio>
-                      <radio label="居中"></radio>
-                      <radio label="靠右"></radio>
+                  <radio-group v-model="currentcomponent[rigthShowUi].style.textAlign" type="button">
+                      <radio label="left">靠左</radio>
+                      <radio label="center">居中</radio>
+                      <radio label="right">靠右</radio>
                   </radio-group>
+                  
                 </div>
                 <div class="skeletonList">
                   <span class="skeletonName">链接页面：</span>
@@ -92,7 +137,7 @@
                 <span >
                   <Input-number :max="100" :min="0"  v-model="currentcomponent[rigthShowUi].style.fontSize" ></Input-number>              
                 </span>
-                <span class="skeletonCue">px (1~100)</span>
+                <span class="skeletonCue">(单位：px )</span>
               </div>
               <div class="skeletonList">
                 <span class="skeletonName">文字颜色：</span>
@@ -106,15 +151,15 @@
               <div class="skeletonList">
                 <span class="skeletonName">文字内容：</span>
                 <span >
-                  <i-input style="width:144px" v-model="currentcomponent[rigthShowUi].text" ></i-input>              
+                  <i-input style="width:144px" @on-focus="selectText($event)" v-model="currentcomponent[rigthShowUi].text" ></i-input>              
                 </span>
                 
               </div>
-
-
-
             </div> 
 
+
+
+            
           </div>
           <!-- <div v-else>
             bbbb
@@ -196,13 +241,13 @@
 var that;
 
 export default {
-  props: ["isLog", "currentcomponent", "rigthShow", "rigthShowUi","centerindex"],
+  props: ["isLog", "currentcomponent", "rigthShow", "rigthShowUi","centerindex",'pagevalue','pageindex','pagebgcolor'],
   data() {
     return {
       bgcolor:'', //背景颜色
       modal_link: false, //弹出层_链接
       modal_img: false, //弹出层_图片
-      button_img: "靠左",
+      button_img: "center",
       select_link: "",
       appname: "",
       colors:['#f00','green','blue'],
@@ -219,6 +264,11 @@ export default {
     },
     ss(){
       this.$emit("imgwFn", this.currentcomponent[this.rigthShowUi].style.width);
+    },
+    //聚焦选中文本框的内容
+    selectText(event){
+      event.currentTarget.select();
+      
     },
     inputFocus(e) {
       //debugger
@@ -254,14 +304,28 @@ export default {
         max: 100
       });
     }
+    
   },
   updated() {
     this.$emit("isLogFn", this.isLog);
    
    
+    
+    // if(this.button_img=='靠左'){
+    //   this.button_img="left";
+    //   console.log(this.button_img);
+    // }else if(this.button_img=='居中'){
+    //   this.button_img="center";
+    //   console.log(this.button_img);
+    // }else if(this.button_img=='靠右'){
+    //   this.button_img="right";
+    //   console.log(this.button_img);
+    // }
+    
    
   },
   created() {
+    
   },
   watch: {
     aa() {

@@ -1,13 +1,13 @@
 <template>
   <div>
     <!-- 手机显示屏 -->
-      <div class="muddle-phone">
+      <div class="muddle-phone" >
         <!-- 手机侧边栏 -->
         <div class="side_bar_wrap">
           <div class="side_bar_box">
             <div class="side_bar">
               <div class="side_bar_content">
-                <div class="side_bar_top">
+                <div class="side_bar_top" >
                   <h4>组件</h4>
                 </div>
                 <div class="side_bar_bottom ui-sortable">
@@ -24,23 +24,50 @@
             </div>
           </div>
         </div>
-        <div class="muddle-phone-box"> 
+        
+        <div class="muddle-phone-box" > 
           <!--话筒-->
           <span class="telephone-receiver"></span>
           <!--显示屏-->
-          <div class="screen_box">
-            <div class="screen tuozhuailianjie ui-sortable" id="right">
+         
+          <div class="screen_box" >
+            <div class="screen tuozhuailianjie ui-sortable" id="right" :style="{backgroundColor:pagebgcolor.backgroundColor}">
+             
+     
+             
+ {{pagevalue}}
+         
+             
+             
+             
               <div class="first_1" style="display: block;" data-xcxmc="" data-color="#000000" draggable="false">
                 <!-- {{allcomponents[0].imgs}} -->
-               <div  :class="index==currentactive ? 'phone-mkbox phoneactive':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" style="background-color: #f5e9bc; margin-top:20px; position: relative;">
+               
+              
+               
+               
+               
+               
+               
+               <div  :class="index==currentactive ? 'phone-mkbox phoneactive showclose':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" style="background-color: #f5e9bc;   position: relative;">
                   <div  @click="showXx($event,index)">
-                    索引：{{index}}
-                  <br/>
-                  {{imgw}}
-                   {{item}} 
+                    <!-- 索引：{{index}}
+                    <br/>
+                    {{imgw}}
+                    {{item}}  -->
+
+
+                    <!-- 单张图片 -->
+                    <div class="componentimgs">
+                      <div :style="{marginTop:item.imgs.style.marginTop+'px', backgroundColor:item.imgs.style.backgroundColor,textAlign:item.imgs.style.textAlign}">
+                        <img :style="{width:item.imgs.style.width+'%', height:item.imgs.style.height+'px'}" :src="item.imgs.url" alt="">
+                      </div>
+                    </div>
+                    
+                   
                     </div> 
-                   <div @click="removecomponent(item,index)" style="position:absolute; right:0px; top:0px;z-index:100">
-                     点击删除
+                   <div class="del" @click="removecomponent(item,index)" style="position:absolute; right:0px; top:-24px; background-color:#f00; width:28px; color:#fff; text-align:center; z-index:100">
+                     X
                    </div>
                </div>
                <!-- json模板 -->
@@ -65,18 +92,19 @@
 <script>
 import Imgs from "@/components/modular/Imgs.vue";
 export default {
-  props: ["isLog", "allcomponents", "centerShow", "imgw",'zjitems','tpljson'],
+  props: ["isLog", "allcomponents", "centerShow", "imgw",'zjitems','tpljson','pagevalue','pagebgcolor'],
   data() {
     return {
       lsdatasbak: [],
       currentcomponent: [],
       isShowAttribute: false,
       currentclose: "",
-      currentactive: "false" //默认不出现选中效果
+      currentactive: "false", //默认不出现选中效果
     };
   },
   created() {
     this.tpldata=this.tpljson
+   
   },
   updated() {},
   components: {
@@ -120,6 +148,13 @@ export default {
 .phoneactive {
   border: 0px dashed red;
   box-shadow: 0px 0px 2px red;
+  border:1px solid #f00;
+}
+.phone-mkbox .del{
+  display: none;
+}
+.showclose .del{
+  display: block;
 }
 .muddle-phone {
   width: 420px;
@@ -246,4 +281,13 @@ export default {
     width: 60%;
   }
 }
+
+
+.componentimgs{
+  
+}
+.componentimgs img{
+    border: 0;
+    vertical-align: top;
+  }
 </style>

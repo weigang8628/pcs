@@ -31,14 +31,13 @@
     var myTemplate = `
             <div>
             <button v-for=" (item,index) in arr" @click="aa(index)">点击第{{index}}按钮</button>
-              <div v-for=" (item,index) in newarr">
+              
+              
+              <div v-for=" (item,index) in lastarr">
               索引{{index}}
               ++++{{item}}++++
               </div>
-              <hr/>
-            
-              <button @click="aa(0)">点击第0按钮</button>
-              <button @click="aa(1)">点击第1按钮</button>
+              
 
 
             </div>
@@ -51,25 +50,39 @@
       data() {
         return {
           arr: [{ name: "数组中的第零项" }, { name: '数组中的第一项' }, { name: '数组中的第二项' }],
-          newarr:[],
+          lastarr:[],
         };
       },
       methods:{
         aa(index){
-           
-          //console.log(this.arr[index].id=sj)
-          //console.log(this.newarr.push(this.arr[index]));
-          // this.newarr.push(this.arr[index].id = sj)
-          
-          // var ui = this.arr[index];
-          // ui.id = Math.random() * 100;
-          // this.newarr.push(this.arr[index]);
 
-for (let i = 0; i < this.arr.length; i++) {
-  var sj = Math.random() * 100;
-  this.arr[i].id= sj;
-}
-console.log(this.arr[index]);
+          var sj = Math.random() * 100;
+          this.arr[index].id = sj
+          var newarr = cloneObj(this.arr)
+          console.log(newarr[0].a, this.arr[0].a);
+
+          this.lastarr.push(newarr[index])
+          console.log(this.lastarr);
+
+          //深拷贝方法
+          function cloneObj(obj) {
+            var str, newobj = obj.constructor === Array ? [] : {};
+            if (typeof obj !== 'object') {
+              return;
+            } else if (window.JSON) {
+              str = JSON.stringify(obj), //系列化对象
+                newobj = JSON.parse(str); //还原
+            } else {
+              for (var i in obj) {
+                newobj[i] = typeof obj[i] === 'object' ?
+                  cloneObj(obj[i]) : obj[i];
+              }
+            }
+            return newobj;
+          };
+           
+          
+
   
 
         }

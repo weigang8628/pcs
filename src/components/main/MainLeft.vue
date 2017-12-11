@@ -11,18 +11,17 @@
 						</span>
 					</div>
 					<ul class="home_page">
-						<li v-for="(item,index) in pages":key="index">
-							<span class="page_title" ref="bianji">{{item.navigationBarTitleText}}</span>
+						<li v-for="(item,index) in allpage":key="index">
+							<span class="page_title" ref="bianji" @click="leftnamec(index)">{{item.navigationBarTitleText}}</span>
 							<div class="nature" ref="infobox">
 								<span class="iconfont icon-lajitong"></span>
 								<span class="iconfont icon-bianjiyemian" @click="write(index)"></span>
 							</div>
 							<div class="bianjiyemian" ref="bianjibox">
-            	<input type="text" ref="text" value="">
-            	<span class="u_srue" @click="sure(index)">确认</span>	
-            	<span class="u_del">删除</span>
-            </div>
-
+                <input type="text" ref="text" value="" on-fouce>
+                <span class="u_srue" @click="sure(index)">确认</span>	
+                <span class="u_del">取消</span>
+              </div>
 						</li>
 					</ul>
 				</div>
@@ -35,7 +34,7 @@
 							<br/>{{item.title}}
 						</div>
 					</li>
-					
+				
     
         </ul>
       </div>
@@ -48,24 +47,18 @@
 
 <script>
 export default {
-  props: ["isshowxxk"],
+  props: ["isshowxxk",'allpage'],
   data() {
     return {
-      pages: "",
+     
       components: "",
       left_bg_h: {
         height: 700 + "px"
-      }
+      },
+			
     };
   },
   created() {
-    //发起请求-模板数据
-    this.$ajax
-      .get("")
-      .then(res => {
-        this.pages = res.data.htmls;
-      })
-      .catch(err => console.log(err));
     //发起请求-获取组件名
     this.$ajax
       .get("../../components/components.json")
@@ -81,14 +74,33 @@ export default {
   },
   methods: {
     alerttext(e, index) {
-     var ui = this.components[index];
-     ui.id = Math.random() * 100;
-		// for (let i = 0; i < this.components.length; i++) {
-		//   var sjs = Math.random() * 100;
-		//   this.components[i].id = sjs;
-		// }
-		//console.log(this.components[index]);
-		this.$emit("LsData", this.components[index]);
+
+
+          // var sj = Math.random() * 100;
+          // this.components[index].id = sj
+          let componentsj = cloneObj(this.components)
+
+          //深拷贝方法
+          function cloneObj(obj) {
+            var str, newobj = obj.constructor === Array ? [] : {};
+            if (typeof obj !== 'object') {
+              return;
+            } else if (window.JSON) {
+              str = JSON.stringify(obj), //系列化对象
+                newobj = JSON.parse(str); //还原
+            } else {
+              for (var i in obj) {
+                newobj[i] = typeof obj[i] === 'object' ?
+                  cloneObj(obj[i]) : obj[i];
+              }
+            }
+            return newobj;
+          };
+
+
+
+		this.$emit("LsData", componentsj[index]);
+    
     },
 		write(index){
 			// const self=this;	
@@ -100,11 +112,10 @@ export default {
 			let getMenuText = this.$refs.bianji[index].innerText;
 			console.log(getMenuText)
 			// getMenuText=this.$refs.text[index].value
-			
+			this.allpage[index].navigationBarTitleText= this.$refs.text[index].value
 			console.log(this.$refs.text[index].value)
 			this.$refs.infobox[index].style.display = 'inline';
 			this.$refs.bianjibox[index].style.display='none';
-			
 			if(this.$refs.text[index].value!=''){
 				getMenuText=this.$refs.text[index].value
 			}else{
@@ -112,8 +123,13 @@ export default {
 				console.log("获取不到item");
 			}
 			this.$refs.text[index].value='';
-			
+		},
+		
+		//点击左侧名字事件
+		leftnamec(index){
+			this.$emit("pageindexFn", index);
 		}
+		
   }
 };
 </script>

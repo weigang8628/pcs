@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+
+  
+    
+
+    var cloneObj = function (obj) {
+        var str, newobj = obj.constructor === Array ? [] : {};
+        if (typeof obj !== 'object') {
+          return;
+        } else if (window.JSON) {
+          str = JSON.stringify(obj), //系列化对象
+            newobj = JSON.parse(str); //还原
+        } else {
+          for (var i in obj) {
+            newobj[i] = typeof obj[i] === 'object' ?
+              cloneObj(obj[i]) : obj[i];
+          }
+        }
+        return newobj;
+      };
+
+
+      
+     
+      // var obj = { a: 1, b: 2, c: { ac: 1, bc: 2 }, d: ['ad', 'bd', 'cd', 'dd'] }
+      // var newobj = cloneObj(obj)
+      // console.log(newobj);
+      // newobj.a=11;
+      // console.log(newobj.a, obj.a);
+
+
+      //随机数
+      
+
+      var arr = [{a:1},{b:2},{c:3}];
+      var lastarr = [];
+      
+      for (let i = 0; i < arr.length; i++) {
+        var sj = Math.random() * 100;
+        arr[i].id=sj        
+      }
+
+
+      var newarr = cloneObj(arr)
+      
+      newarr[0].a=11;
+      console.log(newarr[0].a, arr[0].a);
+
+      lastarr.push(newarr)
+      console.log(lastarr);
+
+  </script>
+</body>
+</html>

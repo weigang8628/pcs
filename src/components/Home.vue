@@ -4,18 +4,21 @@
     <!-- 左边 -->
     <div class="box_middule">
       <div class="phone_setBox">
-        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[0].uis" :centerShow="centerShow" :imgw="imgw"  :zjitems="zjitems" :tpljson="tpljson"></CenterBox>
+        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[pageindex|0].uis" :centerShow="centerShow" :imgw="imgw"  :zjitems="zjitems" :tpljson="tpljson" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pagebgcolor="tplTemp.htmls[pageindex|0].style"  ></CenterBox>
       </div>
-      <LeftBox @LsData = "lsdatafn" :isshowxxk="isshowxxk"></LeftBox>
-      <RightBox @isLogFn = "lisLogFn" @imgwFn="imgwFn" :isLog = "mbjson" :currentcomponent="currentcomponent" :rigthShow="rigthShow" :rigthShowUi="rigthShowUi" :centerindex="centerindex"></RightBox>
+      <LeftBox @LsData = "lsdatafn" @pageindexFn="pageindexFn"  :isshowxxk="isshowxxk" :allpage="tplTemp.htmls"></LeftBox>
+      <RightBox @isLogFn = "lisLogFn" @imgwFn="imgwFn" :isLog = "mbjson" :currentcomponent="currentcomponent" :rigthShow="rigthShow" :rigthShowUi="rigthShowUi" :centerindex="centerindex" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pageindex="pageindex" :pagebgcolor="tplTemp.htmls[pageindex|0].style"></RightBox>
     </div>
   </div>
 </template>
 
 <script>
+
 import LeftBox from "./main/MainLeft";
 import CenterBox from "./main/MainCenter.vue";
 import RightBox from "./main/MainRight.vue";
+
+let currentindex=0 ; //页面id默认是0 首页
 export default {
 	props:['isshowxxk','tpljson'],
   data() {
@@ -24,6 +27,7 @@ export default {
       rigthShowUi:"",
       lsdata: [],
       zjitems:[],
+      pageindex:'',
       mbjson: {
         width: "80%",
         height: "100px",
@@ -44,31 +48,26 @@ export default {
           {
             navigationBarTitleText: "首页",
             style: {
-              backgroundColor: "#ff0000"
+              backgroundColor: "#ffffff"
             },
             uis: [
-              // {
-              //   imgs: {
-              //     id: "1",
-              //     title: "图片1",
-              //     url:
-              //       "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
-              //     style: {
-              //       width: 80,
-              //       height: 90,
-              //       padding: 20,
-              //       marginTop: 10,
-              //       backgroundColor: "#ff0000"
-              //     }
-              //   }
-              // }
             ]
           },
           {
             navigationBarTitleText: "列表页",
             style: {
               backgroundColor: "yellow"
-            }
+            },
+            uis: [
+            ]
+          },
+          {
+            navigationBarTitleText: "内容页",
+            style: {
+              backgroundColor: "green"
+            },
+            uis: [
+            ]
           }
         ],
         foot: {}
@@ -85,9 +84,14 @@ export default {
       this.mbjson = data;
     },
     lsdatafn(data) {
-      this.tplTemp.htmls[0].uis.push(data); //系统组件
+      console.log("---------------------");
+      console.log(currentindex);
+      // console.log(pageindex+"qqq");
+
+
+
+      this.tplTemp.htmls[currentindex].uis.push(data); //系统组件
       console.log(this.tplTemp.htmls[0].uis);
-      
       this.centerShow = Object.keys(data)[0];
       
     },
@@ -104,7 +108,13 @@ export default {
     },
     imgwFn(data){
         this.imgw = data
-    }
+    },
+    //页面索引值
+    pageindexFn(data){
+      this.pageindex = data;
+      currentindex = this.pageindex;
+    },
+    
 
     
   },

@@ -23,8 +23,8 @@
           <div class="mbfl-l">
             <ul>
               <li v-for="(item,index) in alltpl" :key="index" @click="send(index)">
-                  {{index+2}}
-                  <h3>{{item.appname}}</h3>
+                  
+                  <h3>{{item.appname}} id:{{index+2}}</h3>
                   <img :src="item.tplimg" alt="">
                   <span @click="srue">立即使用</span>
               </li>
@@ -141,15 +141,40 @@ export default {
     float: left;
     width: 80%;
     ul {
+      overflow: hidden;
+      padding-top: 20px;
+      
       li {
         float: left;
+        width: 130px;
         height: 178px;
+        background-color: #fff;
+        margin-left: 20px;
+        padding: 7px;
+        position: relative;
         h3 {
           font-size: 16px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 26px;
+          line-height: 26px;
+          text-align: center;
+          background-color: rgba(0, 0, 0, .5);
+          color:#fff;
+          font-weight: normal;
+          font-size: 14px;
         }
         img {
-          width: 100px;
+          width: 100%;
           height: 100%;
+        }
+        span{
+          position: absolute;
+          left: 0;
+          width: 100%;
+          text-align: center;
         }
       }
     }
