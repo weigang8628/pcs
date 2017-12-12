@@ -1,6 +1,5 @@
 <template>
   <div class="left">
-
 <!--主体左侧列表-->
     <div class="left-page" v-bind:style="left_bg_h">
       	<div class="nav-page">
@@ -25,37 +24,29 @@
 						</li>
 					</ul>
 				</div>
-
-        <ul v-show="isshowxxk" id="left" class="gl-tab tuozhuailianjie" >
+        <ul v-show="isshowxxk" id="left" class="gl-tab" >
           <!--文本-->
-          <li class="tuo_text" @click="alerttext($event,index)"  v-for="(items,index) in components" :key="index">
+          <li class="tuo_text" @click="addComponentToCenter($event,index)"  v-for="(items,index) in components" :key="index">
 					 <div v-for="(item,index) in items" :key="index" >
 							<span class="iconfont icon-wenben"></span>
 							<br/>{{item.title}}
 						</div>
 					</li>
-				
-    
         </ul>
       </div>
-			
     </div>
-
-
   </div>
 </template>
 
 <script>
 export default {
-  props: ["isshowxxk",'allpage'],
+  props: ["isshowxxk", "allpage"],
   data() {
     return {
-     
       components: "",
       left_bg_h: {
         height: 700 + "px"
-      },
-			
+      }
     };
   },
   created() {
@@ -70,66 +61,55 @@ export default {
   },
   meunted() {
     let cur = document.documentElement.clientHeight;
-  //  console.log(cur);
+    //  console.log(cur);
   },
   methods: {
-    alerttext(e, index) {
+    addComponentToCenter(e, index) {
+      // var sj = Math.random() * 100;
+      // this.components[index].id = sj
+      let componentsj = cloneObj(this.components);
 
-
-          // var sj = Math.random() * 100;
-          // this.components[index].id = sj
-          let componentsj = cloneObj(this.components)
-
-          //拷贝方法
-          function cloneObj(obj) {
-            var str, newobj = obj.constructor === Array ? [] : {};
-            if (typeof obj !== 'object') {
-              return;
-            } else if (window.JSON) {
-              str = JSON.stringify(obj), //系列化对象
-                newobj = JSON.parse(str); //还原
-            } else {
-              for (var i in obj) {
-                newobj[i] = typeof obj[i] === 'object' ?
-                  cloneObj(obj[i]) : obj[i];
-              }
-            }
-            return newobj;
-          };
-
-
-
-		this.$emit("LsData", componentsj[index]);
-    
+      //拷贝方法
+      function cloneObj(obj) {
+        var str,
+          newobj = obj.constructor === Array ? [] : {};
+        if (typeof obj !== "object") {
+          return;
+        } else if (window.JSON) {
+          (str = JSON.stringify(obj)), //系列化对象
+            (newobj = JSON.parse(str)); //还原
+        } else {
+          for (var i in obj) {
+            newobj[i] = typeof obj[i] === "object" ? cloneObj(obj[i]) : obj[i];
+          }
+        }
+        return newobj;
+      }
+      this.$emit("lsdata", componentsj[index]);
     },
-		write(index){
-			// const self=this;	
-			this.$refs.infobox[index].style.display = 'none';
-			this.$refs.bianjibox[index].style.display='block'
-			console.log(index)
-		},
-		sure(index){ 
-			let getMenuText = this.$refs.bianji[index].innerText;
-			console.log(getMenuText)
-			// getMenuText=this.$refs.text[index].value
-			this.allpage[index].navigationBarTitleText= this.$refs.text[index].value
-			console.log(this.$refs.text[index].value)
-			this.$refs.infobox[index].style.display = 'inline';
-			this.$refs.bianjibox[index].style.display='none';
-			if(this.$refs.text[index].value!=''){
-				getMenuText=this.$refs.text[index].value
-			}else{
-				getMenuText=this.items.navigationBarTitleText;
-				console.log("获取不到item");
-			}
-			this.$refs.text[index].value='';
-		},
-		
-		//点击左侧名字事件
-		leftnamec(index){
-			this.$emit("pageindexFn", index);
-		}
-		
+    write(index) {
+      this.$refs.infobox[index].style.display = "none";
+      this.$refs.bianjibox[index].style.display = "block";
+    },
+    sure(index) {
+      let getMenuText = this.$refs.bianji[index].innerText;
+      console.log(getMenuText);
+      this.allpage[index].navigationBarTitleText = this.$refs.text[index].value;
+      console.log(this.$refs.text[index].value);
+      this.$refs.infobox[index].style.display = "inline";
+      this.$refs.bianjibox[index].style.display = "none";
+      if (this.$refs.text[index].value != "") {
+        getMenuText = this.$refs.text[index].value;
+      } else {
+        getMenuText = this.items.navigationBarTitleText;
+        console.log("获取不到item");
+      }
+      this.$refs.text[index].value = "";
+    },
+    //点击左侧名字事件
+    leftnamec(index) {
+      this.$emit("pageindex", index);
+    }
   }
 };
 </script>
@@ -141,7 +121,6 @@ export default {
   overflow: hidden;
   background-color: #f8f8f8;
 }
-
 .gl-tab li {
   width: 33%;
   text-align: center;
@@ -153,7 +132,6 @@ export default {
   border-bottom: 1px solid #dcdcdc;
   cursor: pointer;
 }
-
 .gl-tab li span {
   display: inline-block;
   margin-top: 30%;
@@ -163,7 +141,6 @@ export default {
 .gl-tab li:nth-child(3n) {
   border-right: 0;
 }
-
 /* 页面管理 */
 .left-page {
   text-align: left;
@@ -184,14 +161,12 @@ export default {
   vertical-align: top;
   box-shadow: 1px 5px 8px #c6c6c6;
 }
-
 .default {
   width: 100%;
   height: 42px;
   border-bottom: 1px solid #d6d6d6;
   webkit-transform: rotateZ(90deg);
 }
-
 .default::before {
   content: "";
   position: absolute;
@@ -202,11 +177,9 @@ export default {
   border-left: 8px solid #666;
   transition: all linear 0.3s;
 }
-
 .default span {
   font-size: 16px;
 }
-
 .default i {
   display: inline-block;
   margin: 0;
@@ -216,39 +189,32 @@ export default {
   margin-left: 26px;
   margin-top: 11px;
 }
-
 .funct {
   height: 100%;
   line-height: 42px;
   float: right;
   margin-right: 20px;
 }
-
 .funct span {
   display: inline-block;
   margin-left: 5px;
 }
-
 .default:hover .copyreader span {
   display: block;
   cursor: pointer;
 }
-
 .copyreader {
   display: inline;
 }
-
 .copyreader span {
   float: right;
   display: none;
   padding: 13px 10px 0 0;
   float: right;
 }
-
 .icon-bianjiyemian {
   font-size: 17px !important;
 }
-
 .revamp {
   position: absolute;
   bottom: 56px;
@@ -262,7 +228,6 @@ export default {
   border-bottom-right-radius: 5px;
   z-index: 999;
 }
-
 .tj_btn {
   display: inline-block;
   width: 40%;
@@ -273,7 +238,6 @@ export default {
   background-color: #efbf1f;
   cursor: pointer;
 }
-
 .tj_btn i {
   display: inline-block;
   width: 20px;
@@ -287,7 +251,6 @@ export default {
   margin-top: -16px;
   margin-left: -4px;
 }
-
 .property_index {
   height: 39px;
   line-height: 40px;
@@ -298,7 +261,6 @@ export default {
   cursor: pointer;
   margin-left: -20px;
 }
-
 .property_index:before {
   content: "";
   position: absolute;
@@ -309,7 +271,6 @@ export default {
   border-left: 8px solid #666;
   transition: all linear 0.3s;
 }
-
 .property_pro {
   height: 39px;
   line-height: 40px;
@@ -319,7 +280,6 @@ export default {
   position: relative;
   cursor: pointer;
 }
-
 .property_pro:before {
   content: "";
   position: absolute;
@@ -330,7 +290,6 @@ export default {
   border-left: 8px solid #666;
   transition: all linear 0.3s;
 }
-
 .stages {
   position: absolute;
   height: 60px;
@@ -339,7 +298,6 @@ export default {
   background: #fff;
   bottom: -2px;
 }
-
 .bgstg {
   margin: 13px auto;
   width: 150px;
@@ -352,7 +310,6 @@ export default {
   color: #fff;
   cursor: pointer;
 }
-
 .del {
   position: absolute;
   right: -1px;
@@ -370,12 +327,10 @@ export default {
   z-index: 999;
   display: none;
 }
-
 .home_page {
   overflow: hidden;
   margin-top: -1px;
 }
-
 .home_page li {
   width: 100%;
   height: 45px;
@@ -383,38 +338,31 @@ export default {
   border-bottom: 1px solid #efbf1f;
   position: relative;
 }
-
 .page_title {
   display: inline-block;
   width: 150px;
   height: 42px;
   margin-left: 23px;
 }
-
 .nature {
   display: inline;
 }
-
 .icon-lajitong {
   font-weight: bold;
 }
-
 .icon-bianjiyemian {
   font-weight: bold;
 }
-
 .nature span {
   float: right;
   margin-right: 10px;
 }
-
 .management {
   width: 100%;
   overflow: hidden;
   display: block;
   margin-left: -30px;
 }
-
 .managementse {
   width: 100%;
   overflow: hidden;
@@ -1120,30 +1068,29 @@ textarea {
   border: 1px dashed coral;
 }
 
-.bianjiyemian{
-	position: absolute;
-	left: 0; top: 0;
-	display: none;
+.bianjiyemian {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
 }
-.bianjiyemian input{
-	height: 40px;
-	border: none;
-	background-color: #F8F8F8;
-	border-bottom: 1px dashed #efbf1f;
-	padding-left: 10px;
+.bianjiyemian input {
+  height: 40px;
+  border: none;
+  background-color: #f8f8f8;
+  border-bottom: 1px dashed #efbf1f;
+  padding-left: 10px;
 }
 .u_srue,
-.u_del{
-	display: inline-block;
-	width: 40px;
-	height: 22px;
-	line-height: 22px;
-	font-size: 14px;
-	color: #fff;
-	text-align: center;
-	background-color: #efbf1f;
-	border-radius: 5px;
+.u_del {
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  background-color: #efbf1f;
+  border-radius: 5px;
 }
-
-
 </style>

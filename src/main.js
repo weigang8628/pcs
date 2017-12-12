@@ -5,7 +5,7 @@ import router from './router'
 //axios开始
 import Axios from '../node_modules/axios/dist/axios'
 Vue.prototype.$ajax = Axios
-Axios.defaults.baseURL = '/static/tpl/tpl01.json';
+Axios.defaults.baseURL = '/static/tpl/tpl01.json'
 //axios结束
 
 //iview开始
@@ -16,7 +16,7 @@ Vue.use(iView);
 
 /* 引入全局的css */
 import './assets/css/pcs-base.css'
-//import './assets/css/font_img/font/iconfont.css'
+// import '@/assets/css/font_img/font/iconfont.css'
 
 Vue.config.productionTip = false
 

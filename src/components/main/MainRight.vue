@@ -3,13 +3,10 @@
     <!--主体右侧部分-->
     <div class="rg-amend" :style="right_bg_h"  >
       <div class="demo" >
-
-
         <!-- 全局设置 -->
             <!-- 全局设置-索引0 -->
             <div v-if="pageindex==0">
-              <div><h3>{{pagevalue}}的全局配置</h3></div>
-                
+              <div><h3>&nbsp;{{pagevalue}}的全局配置</h3></div>
                 <div class="skeletonList">
                   <span class="skeletonName">页面标题：</span>
                   <span >
@@ -61,15 +58,11 @@
                   </span>
                 </div>
             </div>
-            
-
-        <hr/>
+            <hr>
        <!-- index: {{centerindex}} key:{{rigthShowUi}}
        {{currentcomponent}} -->
           <div v-if="rigthShow" >
-           
-            {{Object.keys(rigthShow)[0]}}
-
+            <!-- {{Object.keys(rigthShow)[0]}} -->
             <!-- 单张图片组件 -->
             <div v-if="rigthShowUi=='imgs'">
               <!-- {{currentcomponent[rigthShowUi]}} -->
@@ -77,7 +70,7 @@
               <div class="skeletonList">
                 <span class="skeletonName">图片宽度：</span>
                 <span >
-                  <Input-number :max="100" :min="0" @input="ss" v-model="currentcomponent[rigthShowUi].style.width" ></Input-number>              
+                  <Input-number :max="100" :min="0" v-model="currentcomponent[rigthShowUi].style.width" ></Input-number>              
                 </span>
                 <span class="skeletonCue">(单位：% )</span>
               </div>
@@ -126,7 +119,6 @@
                       <radio label="center">居中</radio>
                       <radio label="right">靠右</radio>
                   </radio-group>
-                  
                 </div>
                 <div class="skeletonList">
                   <span class="skeletonName">链接页面：</span>
@@ -139,12 +131,10 @@
                       </Select>
                   </span>
                 </div>
-
             </div>
 
             <!-- Imgs组件 -->
             <div v-else-if="rigthShowUi=='texts'">
-              
               <!-- {{currentcomponent[rigthShowUi]}} -->
               <div class="skeletonList">
                 <span class="skeletonName">文字大小：</span>
@@ -167,184 +157,57 @@
                 <span >
                   <i-input style="width:144px" @on-focus="selectText($event)" v-model="currentcomponent[rigthShowUi].text" ></i-input>              
                 </span>
-                
               </div>
             </div> 
-
-
-
-            
           </div>
           <!-- <div v-else>
             bbbb
           </div> -->
-      
       </div>
-      
-      <!-- <div class="skeletonList">
-        <span class="skeletonName">图片宽度：</span>
-        <span >
-          <i-input class="resetInput " @on-focus="inputFocus($event)" data-id="skeletonOnlyImgWidth" v-model="isLog.width" > </i-input>
-        </span>
-        <span class="skeletonCue">(1~100)</span>
-      </div>
-      <div class="skeletonList">
-        <span class="skeletonName">图片高度：</span>
-        <span>
-          <i-input class="resetInput" on-focus="inputFocus" id="skeletonOnlyImgHeight" v-model="isLog.height"></i-input>
-        </span>
-        <span class="skeletonCue"></span>
-      </div>
-      <div class="skeletonList">
-        <span class="skeletonName">上边间距：</span>
-        <span >
-          
-          <i-input class="resetInput valueInput  " on-focus="inputFocus"  id="skeletonOnlyImgMarginTop" v-model="isLog.marginTop"></i-input>
-        </span>
-        <span class="skeletonCue">(1~100)</span>
-      </div>
-      <div class="skeletonList">
-        <span class="skeletonName">背景颜色：</span>
-        <span >
-          
-          <color-picker v-model="bgcolor" />
-        </span>
-        <span >
-          <i-input class="resetInput " id="skeletonOnlyImgWidth" v-model="isLog.backgroundColor" > </i-input>
-        </span>
-      </div>
-      <div class="skeletonList">
-        <span class="skeletonName">选择图片：</span>
-        <Button  type="ghost" @click="modal_img = true" id="skeletonOnlyImgChoose" >选择图片</Button>
-        <span class="skeletonCue">点击选择图片</span>
-        <modal
-        v-model="modal_img"
-        title="请选择图片"
-        @on-ok="ok"
-        >
-        <p>图片a</p>
-        <p>图片b</p>
-        <p>图片c</p>
-    </modal>
-        
-      </div>
-      <div class="skeletonList">
-        <span class="skeletonName">图片对齐：</span>
-        <radio-group v-model="button_img" type="button">
-        <radio label="靠左"></radio>
-        <radio label="居中"></radio>
-        <radio label="靠右"></radio>
-    </radio-group>
-      </div>
-      <div class="skeletonList">
-         <span class="skeletonName">链接页面：</span>
-         <span>
-          <Select v-model="select_link" style="width:170px;">
-                <Option value="index">首页</Option>
-                <Option value="list">列表页</Option>
-                <Option value="shop">购物车</Option>
-                <Option value="us">我的</Option>
-            </Select>
-         </span>
-      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-var that;
-
 export default {
-  props: ["isLog", "currentcomponent", "rigthShow", "rigthShowUi","centerindex",'pagevalue','pageindex','pagebgcolor'],
+  props: [
+    "currentcomponent",
+    "rigthShow",
+    "rigthShowUi",
+    "centerindex",
+    "pagevalue",
+    "pageindex",
+    "pagebgcolor"
+  ],
   data() {
     return {
-      bgcolor:'', //背景颜色
       modal_link: false, //弹出层_链接
       modal_img: false, //弹出层_图片
       button_img: "center",
       select_link: "",
       appname: "",
-      colors:['#f00','green','blue'],
-      //页面背景图片
+      colors: ["#f00", "green", "blue"],//颜色选择器自定义颜色值
       right_bg_h: {
-        height: 700 + "px"
+        //页面背景图片
+        height: 800 + "px"
       }
     };
   },
-  
   methods: {
+    //iview弹出层确定按钮事件
     ok() {
       this.$Message.info("点击了确定");
     },
-    ss(){
-      this.$emit("imgwFn", this.currentcomponent[this.rigthShowUi].style.width);
-    },
     //聚焦选中文本框的内容
-    selectText(event){
+    selectText(event) {
       event.currentTarget.select();
-      
-    },
-    inputFocus(e) {
-      //debugger
-      //修改文本框的值
-      function inputvalue(obj) {
-        // debugger
-        var getinputvalue = obj.inputvalue;
-        var min = obj.min;
-        var max = obj.max;
-        e.target.onkeydown = function(ev) {
-          var ev = ev || window.event;
-          if (ev.keyCode == "40") {
-            getinputvalue--;
-            if (getinputvalue <= min) {
-              getinputvalue = min;
-            }
-          }
-          if (ev.keyCode == "38") {
-            getinputvalue++;
-            if (getinputvalue >= max) {
-              getinputvalue = max;
-            }
-          }
-          //console.log(id.id)//获取id名字
-          //判断添加什么类型的单位
-          that.isLog.width = getinputvalue + "%"; //宽度
-        };
-      }
-      // debugger
-      inputvalue({
-        inputvalue: parseInt(this.isLog.width),
-        min: 0,
-        max: 100
-      });
     }
-    
   },
   updated() {
-    this.$emit("isLogFn", this.isLog);
-   
-   
-    
-    // if(this.button_img=='靠左'){
-    //   this.button_img="left";
-    //   console.log(this.button_img);
-    // }else if(this.button_img=='居中'){
-    //   this.button_img="center";
-    //   console.log(this.button_img);
-    // }else if(this.button_img=='靠右'){
-    //   this.button_img="right";
-    //   console.log(this.button_img);
-    // }
-    
    
   },
   created() {
-    
-  },
-  watch: {
-    aa() {
-      console.log("24332")
-    }
+
   }
 };
 </script>

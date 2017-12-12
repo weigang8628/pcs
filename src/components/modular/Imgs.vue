@@ -13,10 +13,8 @@
 //遍历接收到的isLog数据
 // var that="";
 // function a() {
-  
 // }
 export default {
-  props: {isLog:Object},
   data () {
     return {
       images_boxstyle:
@@ -30,7 +28,6 @@ export default {
     }
   },
   created(){
-    
     Object.keys(this.isLog).forEach(element => {
       this.images_imgstyle[element] = this.isLog[element];
       //console.log(element+":"+this.isLog[element]);

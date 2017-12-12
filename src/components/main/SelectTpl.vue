@@ -19,7 +19,7 @@
               <li><a href="javascript:;">金融</a></li>
             </ul>
             
-          </div>  `
+          </div>
           <div class="mbfl-l">
             <ul>
               <li v-for="(item,index) in alltpl" :key="index" @click="send(index)">
@@ -28,22 +28,13 @@
                   <img :src="item.tplimg" alt="">
                   <span @click="srue">立即使用</span>
               </li>
-              <!-- <li @click="send">
-                  <h3>蛋糕店</h3>
-                  <img src="http://www.weixapps.com:3200/res/form/2c91a36a5fdd8c9a015ffb7cb6661552/297eb6155f35043d015f3505adfd0004/4912820171127173017719.jpg" alt="">
-                  <span>立即使用</span>
-              </li> -->
-
-
             </ul>
           </div>
           <div @click="srue">确定</div>
         </div>
     </transition>
-
   </div>
   <!-- 头部结束 -->
-
 </template>
 
 <script>

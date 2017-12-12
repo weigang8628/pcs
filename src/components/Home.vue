@@ -1,23 +1,21 @@
 <template>
-  <div >
-    <!-- 主体部分 -->
+  <div>
+    <!-- 整体结构部分 -->
     <!-- 左边 -->
     <div class="box_middule">
       <div class="phone_setBox">
-        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[pageindex|0].uis" :centerShow="centerShow" :imgw="imgw"  :zjitems="zjitems" :tpljson="tpljson" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pagebgcolor="tplTemp.htmls[pageindex|0].style" :FooterBars="tplTemp.foot.toolBars" ></CenterBox>
+        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :allcomponents="tplTemp.htmls[pageindex|0].uis" :centerShow="centerShow"  :zjitems="zjitems" :tpljson="tpljson" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pagebgcolor="tplTemp.htmls[pageindex|0].style" :foot="tplTemp.foot" ></CenterBox>
       </div>
-      <LeftBox @LsData = "lsdatafn" @pageindexFn="pageindexFn"  :isshowxxk="isshowxxk" :allpage="tplTemp.htmls"></LeftBox>
-      <RightBox @isLogFn = "lisLogFn" @imgwFn="imgwFn" :isLog = "mbjson" :currentcomponent="currentcomponent" :rigthShow="rigthShow" :rigthShowUi="rigthShowUi" :centerindex="centerindex" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pageindex="pageindex" :pagebgcolor="tplTemp.htmls[pageindex|0].style"></RightBox>
+      <LeftBox @lsdata = "lsdatafn" @pageindex="pageindexFn"  :isshowxxk="isshowxxk" :allpage="tplTemp.htmls"></LeftBox>
+      <RightBox :currentcomponent="currentcomponent" :rigthShow="rigthShow" :rigthShowUi="rigthShowUi" :centerindex="centerindex" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pageindex="pageindex" :pagebgcolor="tplTemp.htmls[pageindex|0].style"></RightBox>
     </div>
   </div>
 </template>
 
 <script>
-
 import LeftBox from "./main/MainLeft";
 import CenterBox from "./main/MainCenter.vue";
 import RightBox from "./main/MainRight.vue";
-
 let currentindex=0 ; //页面id默认是0 首页
 export default {
 	props:['isshowxxk','tpljson'],
@@ -37,7 +35,7 @@ export default {
       currentcomponent: [],
       centerShow:'',
       centerindex:'',
-      imgw:'',
+
       tplTemp: {
         appname: "我的第一个模板01",
         tplid: 1,
@@ -52,7 +50,7 @@ export default {
             frontColor: "#000000",
             backgroundColor: "pink",
             style: {
-              backgroundColor: "#ffffff"
+              backgroundColor: "#FFD7F9"
             },
             uis: [
             ],
@@ -62,7 +60,7 @@ export default {
                 img:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
                 imgActive:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
                 url:"http://www.baidu.com"
-              },
+              }, 
               {
                 title:"购物车",
                 img:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
@@ -79,10 +77,10 @@ export default {
           },
           {
             navigationBarTitleText: "列表页",
-            frontColor: "#000000",
+            frontColor: "#FFDEF6",
             backgroundColor: "pink",
             style: {
-              backgroundColor: "yellow"
+              backgroundColor: "#FBFBD1"
             },
             uis: [
             ]
@@ -92,7 +90,7 @@ export default {
             frontColor: "#000000",
             backgroundColor: "pink",
             style: {
-              backgroundColor: "green"
+              backgroundColor: "#E2FFE2"
             },
             uis: [
             ]
@@ -105,47 +103,49 @@ export default {
               title: "首页",
               url: "",
               style: {
-                fontSize: "24px",
+                fontSize: 14,
                 color: "#f00",
-                defimg: "",
-                selimg: ""
+                defimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                selimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png"
               }
             },
             {
               title: "列表页",
               url: "",
               style: {
-                fontSize: "24px",
+                fontSize: 14,
                 color: "#f00",
-                defimg: "",
-                selimg: ""
+                backgroundColor:"#fff",
+                defimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                selimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png"
               }
             },
             {
               title: "购物车",
               url: "",
               style: {
-                fontSize: "24px",
+                fontSize: 14,
                 color: "#f00",
-                defimg: "",
-                selimg: ""
+                defimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                selimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png"
               }
             },
             {
               title: "我的",
               url: "",
               style: {
-                fontSize: "24px",
-                color: "#f00",
-                defimg: "",
-                selimg: ""
+                fontSize: 14,
+                color: "#ff0000",
+                defimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                selimg: "http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png"
               }
             }
           ],
           toolbarStyle: {
-            fontSize: "24px",
-            color: "#f00",
-            backgroundColor: "#ccc"
+            imgSize: 24,
+            fontSize: 14,
+            color: "#ff0000",
+            backgroundColor: "#cccccc"
           }
         }
       }
@@ -154,63 +154,29 @@ export default {
   components: {
     LeftBox,
     CenterBox,
-    RightBox
+    RightBox,
   },
   methods: {
-    lisLogFn(data) {
-      this.mbjson = data;
-    },
     lsdatafn(data) {
-      console.log("---------------------");
-      console.log(currentindex);
-      // console.log(pageindex+"qqq");
-
-
-
-      this.tplTemp.htmls[currentindex].uis.push(data); //系统组件
-      console.log(this.tplTemp.htmls[0].uis);
+      this.tplTemp.htmls[currentindex].uis.push(data); //系统组件 //currentindex页面索引
+      //console.log(this.tplTemp.htmls[0].uis);
       this.centerShow = Object.keys(data)[0];
-      
     },
     currentcomponentFn(data) {
       this.currentcomponent = data;
       this.rigthShow = true;
       this.rigthShowUi = Object.keys(data)[0];
-    //  console.log("下面是app中打印的接收到的数据");
-    //  console.log(this.currentcomponent);
     },
     centerindexFn(data){
       this.centerindex = data
-      console.log(this.centerindex+"www")
-    },
-    imgwFn(data){
-        this.imgw = data
     },
     //页面索引值
     pageindexFn(data){
       this.pageindex = data;
       currentindex = this.pageindex;
     },
-    
-
-    
   },
   created() {
-    
-    //发起请求
-    this.$ajax
-      .get("")
-      .then(res => {
-        this.appname = res.data.appname;
-        //图片宽度
-        this.imgwidth = res.data.htmls["0"].uis["0"].imgs.style.width;
-        this.imgwidth = this.imgwidth.substring(0, this.imgwidth.length - 2);
-        //图片高度
-        this.imgheight = res.data.htmls["0"].uis["0"].imgs.style.height;
-        this.imgheight = this.imgheight.substring(0, this.imgheight.length - 2);
-       // console.log(res.data);
-      })
-      .catch(err => console.log(err));
   },
   updated(){
     var newuis = this.tplTemp.htmls[0].uis

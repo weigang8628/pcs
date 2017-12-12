@@ -1,57 +1,60 @@
 <template>
   <div>
     <div class="header" >
-    <!--头部页面管理与组件切换-->
-    <ul class="cut_tab">
-      <li :class="isshowxxk?'active':''"  @click="PageManagement" >
-        <span class="iconfont icon-yemianguanli"></span>&nbsp;页面管理</li>
-      <li :class="isshowxxk?'':'active'" @click="ComponentLibrary">
-        <span class="iconfont icon-zujianku"></span>&nbsp;组件库
-        <span class="right"></span>
-      </li>
-    </ul>
-    <!--头部中间部分-->
-    <div class="middle-part">
-      <ul>
-        <li>
-          <a href="#">
-            <span class="iconfont icon-lishi"></span>&nbsp;首页</a>
+      <!--头部页面管理与组件切换-->
+      <ul class="cut_tab">
+        <li :class="isshowxxk?'active':''"  @click="PageManagement" >
+          <span class="iconfont icon-yemianguanli"></span>&nbsp;页面管理</li>
+        <li :class="isshowxxk?'':'active'" @click="ComponentLibrary">
+          <span class="iconfont icon-zujianku"></span>&nbsp;组件库
+          <span class="right"></span>
         </li>
-        <li>
-          <a href="//shang.qq.com/wpa/qunwpa?idkey=160b4bcaba1f9b708eb19b31d892b50bbf344b8b2e46d462c1921b7b33294038">
-            <span class="iconfont icon-kefu"></span>&nbsp;客服</a>
-        </li>
-        <li>
-          <div style="cursor: pointer" onclick="gomyguanli('2c91a36a5fdd8c9a016000717f661a6f')">
-            <span class="iconfont">
-              <!-- <img style="width: 16px;height: 16px" src="/applet/img/htgl.png"> -->
-            </span>&nbsp;后台管理</div>
-        </li>
-        <li @click="showtp">
+      </ul>
+      <!--头部中间部分-->
+      <div class="middle-part">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="iconfont icon-lishi"></span>&nbsp;首页
+            </a>
+          </li>
+          <li>
+            <a href="//shang.qq.com/wpa/qunwpa?idkey=160b4bcaba1f9b708eb19b31d892b50bbf344b8b2e46d462c1921b7b33294038">
+              <span class="iconfont icon-kefu"></span>&nbsp;客服
+            </a>
+          </li>
+          <li>
+            <div style="cursor: pointer" onclick="gomyguanli('2c91a36a5fdd8c9a016000717f661a6f')">
+              <span class="iconfont">
+                <!-- <img style="width: 16px;height: 16px" src="/applet/img/htgl.png"> -->
+              </span>&nbsp;后台管理
+            </div>
+          </li>
+          <li @click="showtp">
             <a href="javascript:;">
               <span class="iconfont icon-moban"></span>&nbsp;模板
-            </a>    </li>
+            </a>    
+          </li>
 
-      </ul>
+        </ul>
+      </div>
+      <!--头部预览 保存 发布-->
+      <div class="cont-right">
+        <ul>
+          <li id="keep">保存</li>
+          <li class="generate" id="generate">
+            <span class="iconfont icon-shengchengpingzheng"></span>生成</li>
+          <li class="generate" id="xz">
+            <span class="iconfont icon-shengchengpingzheng"></span>下载</li>
+        </ul>
+      </div>
     </div>
-    <!--头部预览 保存 发布-->
-    <div class="cont-right">
-      <ul>
-        <li id="keep">保存</li>
-        <li class="generate" id="generate">
-          <span class="iconfont icon-shengchengpingzheng"></span>生成</li>
-        <li class="generate" id="xz">
-          <span class="iconfont icon-shengchengpingzheng"></span>下载</li>
-      </ul>
-    </div>
-  </div>
-  <!-- 头部结束 -->
+    <!-- 头部结束 -->
   </div>
 </template>
 
 <script>
 export default {
-  props:{isLog:Object},
   data () {
     return {
       isshowxxk:true,
@@ -70,7 +73,6 @@ export default {
     showtp(){
       this.$emit('isxs',this.isshow)
     }
-    
   }
 }
 </script>

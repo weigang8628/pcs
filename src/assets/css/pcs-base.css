@@ -10,15 +10,15 @@
  	margin: 0;
  	padding: 0;
  }
- 
  ul li {
  	list-style: none;
  }
- 
  a {
  	text-decoration: none;
  }
- 
+ img{
+	vertical-align: top;
+ }
  body {
  	color: #666;
  	min-width: 1080px;
