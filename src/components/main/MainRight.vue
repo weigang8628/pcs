@@ -8,8 +8,24 @@
         <!-- 全局设置 -->
             <!-- 全局设置-索引0 -->
             <div v-if="pageindex==0">
-              {{pagevalue}}的全局配置
-              <div class="skeletonList">
+              <div><h3>{{pagevalue}}的全局配置</h3></div>
+                
+                <div class="skeletonList">
+                  <span class="skeletonName">页面标题：</span>
+                  <span >
+                    <i-input style="width:144px" v-model="pagevalue" ></i-input>              
+                  </span>
+                </div>
+                <div class="skeletonList">
+                  <span class="skeletonName">字体颜色：</span>
+                  <span >
+                    <color-picker v-model="pagebgcolor.backgroundColor"  />
+                  </span>
+                  <span >
+                    <i-input class="resetInput" v-model="pagebgcolor.backgroundColor"> </i-input>
+                  </span>
+                </div>
+                <div class="skeletonList">
                   <span class="skeletonName">背景颜色：</span>
                   <span >
                     <color-picker v-model="pagebgcolor.backgroundColor"  />
@@ -21,7 +37,7 @@
             </div>
             <!-- 全局设置-索引1 -->
             <div v-if="pageindex==1">
-              {{pagevalue}}的全局配置
+              <div><h3>{{pagevalue}}的全局配置</h3></div>
               <div class="skeletonList">
                   <span class="skeletonName">背景颜色：</span>
                   <span >
@@ -34,7 +50,7 @@
             </div>
             <!-- 全局设置-索引2 -->
             <div v-if="pageindex==2">
-              {{pagevalue}}的全局配置
+              <div><h3>{{pagevalue}}的全局配置</h3></div>
               <div class="skeletonList">
                   <span class="skeletonName">背景颜色：</span>
                   <span >
@@ -46,8 +62,6 @@
                 </div>
             </div>
             
-            
-
 
         <hr/>
        <!-- index: {{centerindex}} key:{{rigthShowUi}}

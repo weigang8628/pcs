@@ -6,6 +6,8 @@
   "htmls": [
     {
       "navigationBarTitleText": "首页",
+      "frontColor": "#000000",
+      "backgroundColor": "#cccccc",
       "style": {
         "backgroundColor": "#f00"
       },
@@ -53,9 +55,9 @@
     },
     {
       "navigationBarTitleText": "列表页",
+      "frontColor": "#000000",
+      "backgroundColor": "#cccccc",
       "style": {
-        "fontSize": "24px",
-        "color": "#f00",
         "backgroundColor": "green"
       },
       "uis": [
@@ -75,7 +77,11 @@
     },
     {
       "navigationBarTitleText": "内容页",
-      "backgrond-co": "green",
+      "frontColor": "#000000",
+      "backgroundColor": "pink",
+      "style": {
+        "backgroundColor": "green"
+      },
       "uis": [
         {
           "Texts": {
@@ -94,7 +100,7 @@
   ],
   "foot": {
     "isHide":false,
-    "toolbars": [
+    "toolBars": [
       {
         "title": "首页",
         "url": "",

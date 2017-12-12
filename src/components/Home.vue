@@ -4,7 +4,7 @@
     <!-- 左边 -->
     <div class="box_middule">
       <div class="phone_setBox">
-        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[pageindex|0].uis" :centerShow="centerShow" :imgw="imgw"  :zjitems="zjitems" :tpljson="tpljson" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pagebgcolor="tplTemp.htmls[pageindex|0].style"  ></CenterBox>
+        <CenterBox @currentcomponentFn="currentcomponentFn" @centerindexFn="centerindexFn"  :isLog = "mbjson " :allcomponents="tplTemp.htmls[pageindex|0].uis" :centerShow="centerShow" :imgw="imgw"  :zjitems="zjitems" :tpljson="tpljson" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pagebgcolor="tplTemp.htmls[pageindex|0].style" :FooterBars="tplTemp.foot.toolBars" ></CenterBox>
       </div>
       <LeftBox @LsData = "lsdatafn" @pageindexFn="pageindexFn"  :isshowxxk="isshowxxk" :allpage="tplTemp.htmls"></LeftBox>
       <RightBox @isLogFn = "lisLogFn" @imgwFn="imgwFn" :isLog = "mbjson" :currentcomponent="currentcomponent" :rigthShow="rigthShow" :rigthShowUi="rigthShowUi" :centerindex="centerindex" :pagevalue="tplTemp.htmls[pageindex|0].navigationBarTitleText" :pageindex="pageindex" :pagebgcolor="tplTemp.htmls[pageindex|0].style"></RightBox>
@@ -40,21 +40,47 @@ export default {
       imgw:'',
       tplTemp: {
         appname: "我的第一个模板01",
-        tplid: "1",
+        tplid: 1,
         navigationBarBackgroundColor: "rgba(0,0,0,0)",
+        frontColor: "#000000",
+        backgroundColor: "pink",
         tplimg:
           "http://www.weixapps.com:3200/res/form/2c91a36a5fdd8c9a015ffb7cb6661552/297eb6155f35043d015f3505adfd0004/7163320171127163129989.jpg",
         htmls: [
           {
             navigationBarTitleText: "首页",
+            frontColor: "#000000",
+            backgroundColor: "pink",
             style: {
               backgroundColor: "#ffffff"
             },
             uis: [
+            ],
+            foot: [
+              {
+                title:"首页",
+                img:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                imgActive:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                url:"http://www.baidu.com"
+              },
+              {
+                title:"购物车",
+                img:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                imgActive:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                url:"http://www.baidu.com"
+              },
+              {
+                title:"我的",
+                img:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                imgActive:"http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png",
+                url:"http://www.baidu.com"
+              }
             ]
           },
           {
             navigationBarTitleText: "列表页",
+            frontColor: "#000000",
+            backgroundColor: "pink",
             style: {
               backgroundColor: "yellow"
             },
@@ -63,6 +89,8 @@ export default {
           },
           {
             navigationBarTitleText: "内容页",
+            frontColor: "#000000",
+            backgroundColor: "pink",
             style: {
               backgroundColor: "green"
             },
@@ -70,7 +98,56 @@ export default {
             ]
           }
         ],
-        foot: {}
+        foot: {
+          isHide:false,
+          toolBars: [
+            {
+              title: "首页",
+              url: "",
+              style: {
+                fontSize: "24px",
+                color: "#f00",
+                defimg: "",
+                selimg: ""
+              }
+            },
+            {
+              title: "列表页",
+              url: "",
+              style: {
+                fontSize: "24px",
+                color: "#f00",
+                defimg: "",
+                selimg: ""
+              }
+            },
+            {
+              title: "购物车",
+              url: "",
+              style: {
+                fontSize: "24px",
+                color: "#f00",
+                defimg: "",
+                selimg: ""
+              }
+            },
+            {
+              title: "我的",
+              url: "",
+              style: {
+                fontSize: "24px",
+                color: "#f00",
+                defimg: "",
+                selimg: ""
+              }
+            }
+          ],
+          toolbarStyle: {
+            fontSize: "24px",
+            color: "#f00",
+            backgroundColor: "#ccc"
+          }
+        }
       }
     };
   },
@@ -104,7 +181,7 @@ export default {
     },
     centerindexFn(data){
       this.centerindex = data
-      //console.log(this.centerindex+"111111")
+      console.log(this.centerindex+"www")
     },
     imgwFn(data){
         this.imgw = data

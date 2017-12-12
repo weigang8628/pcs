@@ -80,7 +80,7 @@ export default {
           // this.components[index].id = sj
           let componentsj = cloneObj(this.components)
 
-          //深拷贝方法
+          //拷贝方法
           function cloneObj(obj) {
             var str, newobj = obj.constructor === Array ? [] : {};
             if (typeof obj !== 'object') {

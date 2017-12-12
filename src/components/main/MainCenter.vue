@@ -33,34 +33,33 @@
           <div class="screen_box" >
             <div class="screen tuozhuailianjie ui-sortable" id="right" :style="{backgroundColor:pagebgcolor.backgroundColor}">
              
- {{pagevalue}}
+            {{pagevalue}}
              
               <div class="first_1" style="display: block;" data-xcxmc="" data-color="#000000" draggable="false">
                 <!-- {{allcomponents[0].imgs}} -->
                
-               
-               <div  :class="index==currentactive ? 'phone-mkbox phoneactive showclose':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" style="background-color: #f5e9bc;   position: relative;">
-                  <div  @click="showXx($event,index)">
-                    <!-- 索引：{{index}}
-                    <br/>
-                    {{imgw}}
-                    {{item}}  -->
-                    <!-- {{Object.keys(item)[0]}} -->
-
-                    <!-- 单张图片 -->
-                    <div class="componenttexts" v-if="Object.keys(item)[0]=='imgs'">
-                      <div :style="{marginTop:item.imgs.style.marginTop+'px', backgroundColor:item.imgs.style.backgroundColor,textAlign:item.imgs.style.textAlign}">
-                        <img :style="{width:item.imgs.style.width+'%', height:item.imgs.style.height+'px'}" :src="item.imgs.url" alt="">
+               <div :class="index==currentactive ? 'phone-mkbox phoneactive showclose':'phone-mkbox' " v-for="(item,index,key) in allcomponents" :key="index" style="background-color: #f5e9bc;   position: relative;">
+                  <div @click="showXx($event,index)">
+                      <!-- 索引：{{index}}
+                      <br/>
+                      {{imgw}}
+                      {{item}} -->
+                      <!-- {{Object.keys(item)[0]}} -->
+                      <!-- 单张图片 -->
+                      <div class="componenttexts" v-if="Object.keys(item)[0]=='imgs'">
+                        <div :style="{marginTop:item.imgs.style.marginTop+'px', backgroundColor:item.imgs.style.backgroundColor,textAlign:item.imgs.style.textAlign}">
+                          <img :style="{width:item.imgs.style.width+'%', height:item.imgs.style.height+'px'}" :src="item.imgs.url" alt="">
+                        </div>
                       </div>
-                    </div>
 
-                    <!-- 文本组件 -->
-                    <div class="componenttexts" v-if="Object.keys(item)[0]=='texts'">
-                      <div> {{item.texts.text}} </div>
-                    </div>
+                      <!-- 文本组件 -->
+                      <div class="componenttexts" v-if="Object.keys(item)[0]=='texts'">
+                        <div> {{item.texts.text}} </div>
+                      </div>
+
                     
                     </div> 
-                   <div class="del" @click="removecomponent(item,index)" style="position:absolute; right:0px; top:-24px; background-color:#f00; width:28px; color:#fff; text-align:center; z-index:100">
+                   <div class="del" @click="delcomponent(item,index)" style="position:absolute; right:0px; top:-24px; background-color:#f00; width:28px; color:#fff; text-align:center; z-index:100">
                      X
                    </div>
                </div>
@@ -68,7 +67,6 @@
               <div v-html="tpljson.html">
                 <div>{{tpljson.html}}</div>
               </div>
-              
                 <!-- <div v-for="(item,index) in isLog " :key="item.index">{{item}}</div> -->
                 <!-- {{isLog}} -->
                 <!-- <Imgs :isLog = "isLog"></Imgs> -->
@@ -76,17 +74,35 @@
                 <Imgs :isLog = "isLog"></Imgs> -->
                 <!-- <Texts></TexTs> -->
               </div>
+              <div class="h"></div>
+            </div>
+            <!-- 底部工具栏 -->
+            <div class="footer_tab" >
+              <div class="footer_tab" datatype="bottom_list">
+                <ul class="homeFooter" data-color="#9C9C9C" data-selected_color="#FFFFFE" data-border_style="#000000" data-background_color="#313131" style="border-top: 1px solid black;background-color: #313131">
+                
+                  <li class="footer_list" :style="{ width : 100 / FooterBars.length + '%'}" @click="setFooterBar" v-for="(item,index) in FooterBars" :key="index">
+                    <img style="width:24px;height:24px;margin-top:4px" src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png" data-default_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png" data-select_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png">
+                    <p>{{item.title}}</p>
+                  </li>
+                  <!-- <li class="footer_list"><img style="width:24px;height:24px;margin-top:4px" src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png" data-default_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2145220171108160254148.png" data-select_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4631420171108160254132.png"><p>首页</p></li>
+                  <li class="footer_list"><img style="width:24px;height:24px;margin-top:4px" src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/8308820171108160254110.png" data-default_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/8308820171108160254110.png" data-select_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/8072820171108160254138.png"><p>分类</p></li>
+                  <li class="footer_list"><img style="width:24px;height:24px;margin-top:4px" src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4886620171108160254156.png" data-default_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/4886620171108160254156.png" data-select_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/7595620171108160254107.png"><p>购物车</p></li>
+                  <li class="footer_list"><img style="width:24px;height:24px;margin-top:4px" src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/3522120171108160255162.png" data-default_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/3522120171108160255162.png" data-select_src="http://www.weixapps.com:3200/res/form/8a8283495f5c7321015f5ce8bb110010/297eb6155f35043d015f3505adfd0004/2376720171108160255169.png"><p>我的</p></li>
+                 -->
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
   </div>
 </template>
-
 <script>
+
 import Imgs from "@/components/modular/Imgs.vue";
 export default {
-  props: ["isLog", "allcomponents", "centerShow", "imgw",'zjitems','tpljson','pagevalue','pagebgcolor'],
+  props: ["isLog", "allcomponents", "centerShow", "imgw",'zjitems','tpljson','pagevalue','pagebgcolor','FooterBars'],
   data() {
     return {
       lsdatasbak: [],
@@ -100,7 +116,9 @@ export default {
     this.tpldata=this.tpljson
    
   },
-  updated() {},
+  updated() {
+    //alert(this.allcomponents.length-1)
+  },
   components: {
     Imgs
   },
@@ -110,6 +128,7 @@ export default {
     },
     //点击前数据到传到右侧
     showXx(e, index) {
+
       this.currentcomponent = this.allcomponents[index]; //当前的组件的数据，点击左侧的时候触发
       this.$emit("currentcomponentFn", this.currentcomponent); //传递数据到-app-right
       this.$emit("centerindexFn", index);
@@ -117,12 +136,16 @@ export default {
       this.currentclose = true;
     },
     //删除某个组件块
-    removecomponent(index) {
+    delcomponent(index) {
       this.allcomponents.splice(index, 1);
       if (this.allcomponents.length == 0) {
         this.currentclose = false;
         alert("没有数据");
       }
+    },
+    //设置底部工具栏
+    setFooterBar(index){
+      alert("索引"+index);
     }
   }
 };
@@ -275,6 +298,30 @@ export default {
     width: 60%;
   }
 }
+
+.footer_tab{
+position: absolute;
+width: 100%;
+bottom: 0px;
+}
+.bottom_list{
+
+}
+.footer_tab .homeFooter{
+  overflow: hidden;
+}
+.footer_tab .footer_list{
+  width: 25%;
+  float: left;
+  text-align: center;
+}
+.h {
+    height: 57px;
+    width: 100%;
+    display: block !important;
+}
+
+
 
 
 .componentimgs{
